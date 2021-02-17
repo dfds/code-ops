@@ -16,12 +16,15 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  displayName: 'Installing NuGet'
 
 - task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
   inputs:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: 'Display '
   inputs:
     solution: '$(solution)'
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
@@ -36,11 +39,12 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.nuspec'
+    packagesToPack: '**/.nuspec'
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
