@@ -1,5 +1,6 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs/CloudEngineering/DesignTimeBuild/.dtbcache.v2
+﻿.idea
+obj
+bin
+*.DotSettings.user
+/.vs/cost-janitor-2/v16
+/.vs
