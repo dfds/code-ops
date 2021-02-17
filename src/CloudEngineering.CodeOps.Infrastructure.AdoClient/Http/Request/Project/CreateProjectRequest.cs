@@ -1,9 +1,9 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
 using System;
 using System.Net.Http;
 using System.Text.Json;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Project
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Project
 {
     public sealed class CreateProjectRequest : ApiRequest
     {

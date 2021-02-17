@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Kafka", "src\CloudEngineering.CodeOps.Infrastructure.Kafka\CloudEngineering.CodeOps.Infrastructure.Kafka.csproj", "{66AE13CF-E02B-4BFF-9315-E0E9CE8290BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AdoClient", "src\CloudEngineering.CodeOps.Infrastructure.AdoClient\CloudEngineering.CodeOps.Infrastructure.AdoClient.csproj", "{269113DF-B062-4235-9049-2F5ABADB72C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AzureDevOps", "src\CloudEngineering.CodeOps.Infrastructure.AdoClient\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.csproj", "{269113DF-B062-4235-9049-2F5ABADB72C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

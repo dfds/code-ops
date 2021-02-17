@@ -1,9 +1,9 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Release;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release;
 using System;
 using System.Net.Http;
 using System.Text.Json;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Release.Definition
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Release.Definition
 {
     public sealed class CreateReleaseDefinitionRequest : ApiRequest
     {

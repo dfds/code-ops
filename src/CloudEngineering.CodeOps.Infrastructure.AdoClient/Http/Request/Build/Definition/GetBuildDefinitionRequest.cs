@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Build.Definition
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Build.Definition
 {
     public sealed class GetBuildDefinitionRequest : ApiRequest
     {

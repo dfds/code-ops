@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using CloudEngineering.CodeOps.Abstractions.Aggregates;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Build;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Release;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Mapping.Converters
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
 {
     public class AdoDtoToAggregateRootConverter : ITypeConverter<AdoDto, IAggregateRoot>
     {

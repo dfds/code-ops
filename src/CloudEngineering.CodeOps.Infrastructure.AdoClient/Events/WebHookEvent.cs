@@ -3,7 +3,7 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Events
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events
 {
     public class WebHookEvent : IIntegrationEvent
     {

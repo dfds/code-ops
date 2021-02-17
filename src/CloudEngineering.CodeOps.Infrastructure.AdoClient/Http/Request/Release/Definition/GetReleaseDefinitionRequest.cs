@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Release.Definition
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Release.Definition
 {
     public sealed class GetReleaseDefinitionRequest : ApiRequest
     {

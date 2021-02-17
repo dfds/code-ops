@@ -1,14 +1,14 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Protocols.Http;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Build;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Profile;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Release;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Shared;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Profile;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps
 {
     public interface IAdoClient : IRestClient
     {

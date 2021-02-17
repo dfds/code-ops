@@ -1,10 +1,10 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Aggregates;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Events;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Mapping.Converters;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters;
 using System.Text.Json;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Mapping.Profiles
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Profiles
 {
     public sealed class DefaultProfile : AutoMapper.Profile
     {

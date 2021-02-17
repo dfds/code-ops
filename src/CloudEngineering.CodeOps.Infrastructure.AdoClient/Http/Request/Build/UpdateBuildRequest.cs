@@ -1,9 +1,9 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Build;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build;
 using System;
 using System.Net.Http;
 using System.Text.Json;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Build
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Build
 {
     public sealed class UpdateBuildRequest : ApiRequest
     {

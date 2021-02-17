@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Profile
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Profile
 {
     public sealed class ProfileDto : AdoDto
     {

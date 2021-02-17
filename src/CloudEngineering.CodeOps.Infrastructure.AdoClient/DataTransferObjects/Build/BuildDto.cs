@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Build
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build
 {
     public sealed class BuildDto : AdoDto
     {

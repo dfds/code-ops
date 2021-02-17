@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Shared
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared
 {
     public sealed class EnvironmentDto : AdoDto
     {

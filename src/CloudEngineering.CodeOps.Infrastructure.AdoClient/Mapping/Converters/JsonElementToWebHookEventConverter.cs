@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Events;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events;
 using System.Text.Json;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Mapping.Converters
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
 {
     public class JsonElementToWebHookEventConverter : ITypeConverter<JsonElement, WebHookEvent>
     {

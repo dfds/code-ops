@@ -1,4 +1,4 @@
-﻿namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Caching
+﻿namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Caching
 {
     public static class CacheKeys
     {

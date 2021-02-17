@@ -1,10 +1,10 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
 using System;
 using System.Net.Http;
 using System.Text.Json;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Build;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Build.Definition
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Build.Definition
 {
     public sealed class CreateBuildDefinitionRequest : ApiRequest
     {

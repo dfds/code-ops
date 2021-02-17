@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps
 {
     public sealed class AdoClientException : Exception
     {

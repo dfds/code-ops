@@ -1,5 +1,5 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AdoClient.Caching;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Caching;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Caching.Memory;
@@ -10,9 +10,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Shared;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Middleware
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Middleware
 {
     public sealed class StsCallbackMiddleware : IMiddleware
     {

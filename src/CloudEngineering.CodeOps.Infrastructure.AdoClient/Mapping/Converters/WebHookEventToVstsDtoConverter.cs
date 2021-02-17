@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Events;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events;
 using System;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Mapping.Converters
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
 {
     public class WebHookEventToVstsDtoConverter : ITypeConverter<WebHookEvent, AdoDto>
     {

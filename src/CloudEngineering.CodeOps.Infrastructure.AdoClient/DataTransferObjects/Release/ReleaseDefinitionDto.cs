@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Shared;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Release
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release
 {
     public sealed class ReleaseDefinitionDto : AdoDto
     {

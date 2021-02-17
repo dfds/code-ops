@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Project
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Project
 {
     public sealed class GetProjectRequest : ApiRequest
     {

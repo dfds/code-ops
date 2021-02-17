@@ -1,4 +1,4 @@
-﻿namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Events
+﻿namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events
 {
     public sealed class ReleaseCreatedEvent : WebHookEvent
     {

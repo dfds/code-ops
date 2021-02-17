@@ -1,14 +1,14 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Protocols.Http;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Build;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Profile;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Release;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Shared;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Build;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Build.Definition;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Profile;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Project;
-using CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request.Release;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Profile;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Build;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Build.Definition;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Profile;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Project;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Release;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps
 {
     //TODO: Implement Facade & Command patterns to break up class before it turns into Godzilla
     public sealed class AdoClient : RestClient, IAdoClient

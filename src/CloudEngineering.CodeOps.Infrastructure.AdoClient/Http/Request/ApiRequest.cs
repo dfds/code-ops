@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.Http.Request
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request
 {
     public abstract class ApiRequest : HttpRequestMessage
     {

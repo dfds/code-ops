@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AdoClient.DataTransferObjects.Project
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project
 {
     public sealed class ProjectDto : AdoDto
     {
