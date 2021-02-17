@@ -1,0 +1,9 @@
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\bin\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.deps.json
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\bin\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.dll
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\bin\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.pdb
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\obj\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.csprojAssemblyReference.cache
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\obj\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.AssemblyInfoInputs.cache
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\obj\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.AssemblyInfo.cs
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\obj\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.csproj.CoreCompileInputs.cache
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\obj\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.dll
+C:\Users\toban\source\repos\code-ops\src\CloudEngineering.CodeOps.Abstractions\obj\Debug\netstandard2.0\CloudEngineering.CodeOps.Abstractions.pdb
