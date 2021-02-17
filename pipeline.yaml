@@ -14,38 +14,27 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
+steps:    
 - task: NuGetToolInstaller@1
-  displayName: 'Installing NuGet'
+  displayName: 'Installing NuGet tools'
 
-- task: NuGetCommand@2
-  displayName: 'Restore NuGet packages'
+- task: DotNetCoreCLI@2
+  displayName: 'Restore solution dependencies'
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'restore'
 
-- task: VSBuild@1
-  displayName: 'Display '
+- task: DotNetCoreCLI@2
+  displayName: 'Build source code'
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'Create NuGet packages'
   inputs:
     command: 'pack'
-    packagesToPack: '**/.nuspec'
-    versioningScheme: 'byPrereleaseNumber'
-    majorVersion: '1'
-    minorVersion: '0'
-    patchVersion: '0'
 
 - task: NuGetCommand@2
+  displayName: 'Push NuGet packages'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
