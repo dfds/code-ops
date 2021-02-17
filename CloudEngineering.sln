@@ -11,6 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AzureDevOps", "src\CloudEngineering.CodeOps.Infrastructure.AdoClient\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.csproj", "{269113DF-B062-4235-9049-2F5ABADB72C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ado", ".ado", "{F5BDABA2-5AEE-4FEC-80BF-652AD51690E0}"
+	ProjectSection(SolutionItems) = preProject
+		pipeline.yaml = pipeline.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

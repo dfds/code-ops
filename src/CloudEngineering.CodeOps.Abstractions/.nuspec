@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
+    <id>CloudEngineering.CodeOps.Abstractions</id>
+    <version>1.0.0</version>
+    <title>CodeOps Abstractions</title>
+    <authors>CloudEngineering</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl>
-    <iconUrl>http://icon_url_here_or_delete_this_line/</iconUrl>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-    <copyright>$copyright$</copyright>
-    <tags>Tag1 Tag2</tags>
+    <projectUrl>https://github.com/dfds/code-ops</projectUrl>
+    <description>C# Abstractions</description>
+    <copyright>DFDS</copyright>
+    <tags>CloudEngineering CodeOps Abstractions DeveloperAutomation</tags>
     <dependencies>
-      <dependency id="AutoMapper" version="10.1.1" />
-      <dependency id="MediatR" version="9.0.0" />
-      <dependency id="Microsoft.Extensions.Logging.Abstractions" version="5.0.0" />
-      <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
-      <dependency id="System.Text.Json" version="5.0.1" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="5.0.0" />
+        <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
+        <dependency id="System.Text.Json" version="5.0.1" />
+        <dependency id="AutoMapper" version="10.1.1" />
+        <dependency id="MediatR" version="9.0.0" />
     </dependencies>
   </metadata>
 </package>
