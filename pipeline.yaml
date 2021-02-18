@@ -15,9 +15,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:    
-- task: NuGetToolInstaller@1
-  displayName: 'Installing NuGet tools'
-
 - task: DotNetCoreCLI@2
   displayName: 'Restore solution dependencies'
   inputs:
@@ -31,12 +28,13 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet packages'
   inputs:
-    command: 'pack --version-suffix $(Build.BuildNumber) --include-symbols'
+    command: 'pack'
+    versioningScheme: 'byBuildNumber'
+    includesymbols: true
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Push NuGet packages'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
     publishVstsFeed: '8f93db05-d907-48d6-8537-c2b31e220950'
