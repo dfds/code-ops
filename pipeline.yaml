@@ -16,24 +16,27 @@ variables:
 
 steps:    
 - task: DotNetCoreCLI@2
-  displayName: 'Restore solution dependencies'
+  displayName: 'dotnet restore'
   inputs:
     command: 'restore'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build source code'
+  displayName: 'dotnet build'
   inputs:
     command: 'build'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Create NuGet packages'
+  displayName: 'dotnet pack'
   inputs:
     command: 'pack'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '0' 
     includesymbols: true
 
 - task: DotNetCoreCLI@2
-  displayName: 'Push NuGet packages'
+  displayName: 'dotnet push'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
