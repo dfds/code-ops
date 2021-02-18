@@ -7,15 +7,12 @@
     </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CloudEngineering.CodeOps.Abstractions" Version="1.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\CloudEngineering.CodeOps.Abstractions\CloudEngineering.CodeOps.Abstractions.csproj" />
 	</ItemGroup>
 
 

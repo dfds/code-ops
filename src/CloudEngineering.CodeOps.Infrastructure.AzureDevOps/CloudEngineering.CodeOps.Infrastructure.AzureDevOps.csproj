@@ -7,15 +7,12 @@
     </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CloudEngineering.CodeOps.Abstractions" Version="1.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\CloudEngineering.CodeOps.Abstractions\CloudEngineering.CodeOps.Abstractions.csproj" />
 	</ItemGroup>
 
 
