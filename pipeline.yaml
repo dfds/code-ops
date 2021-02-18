@@ -31,7 +31,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet packages'
   inputs:
-    command: 'pack'
+    command: 'pack --version-suffix $(Build.BuildNumber) --include-symbols'
 
 - task: NuGetCommand@2
   displayName: 'Push NuGet packages'
