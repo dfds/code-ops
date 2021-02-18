@@ -18,31 +18,14 @@ namespace CloudEngineering.CodeOps.Security.Policies.Policies
 
         public async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
         {
-            AuthorizationPolicy policy;
-
-            switch (policyName)
+            AuthorizationPolicy policy = policyName switch
             {
-                case WriteAccessPolicy.PolicyName:
-                    policy = new WriteAccessPolicy(_authenticationSchemas);
-
-                    break;
-                case ExecuteAccessPolicy.PolicyName:
-                    policy = new ExecuteAccessPolicy(_authenticationSchemas);
-
-                    break;
-                case ReadAccessPolicy.PolicyName:
-                    policy = new ReadAccessPolicy(_authenticationSchemas);
-
-                    break;
-                case FullAccessPolicy.PolicyName:
-                    policy = new FullAccessPolicy(_authenticationSchemas);
-
-                    break;
-                default:
-                    policy = await _backupPolicyProvider.GetPolicyAsync(policyName);
-
-                    break;
-            }
+                WriteAccessPolicy.PolicyName => new WriteAccessPolicy(_authenticationSchemas),
+                ExecuteAccessPolicy.PolicyName => new ExecuteAccessPolicy(_authenticationSchemas),
+                ReadAccessPolicy.PolicyName => new ReadAccessPolicy(_authenticationSchemas),
+                FullAccessPolicy.PolicyName => new FullAccessPolicy(_authenticationSchemas),
+                _ => await _backupPolicyProvider.GetPolicyAsync(policyName),
+            };
 
             return policy;
         }
