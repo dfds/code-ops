@@ -1,24 +1,15 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
+﻿using CloudEngineering.CodeOps.Abstractions.Commands;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
+using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands
 {
-    public abstract class AwsCommand<T> : IAwsCommand<T>
+    public abstract class AwsCommand<TResult> : ICommand<TResult> where TResult : Task
     {
-        protected IAwsClientFactory ClientFactory
-        {
-            get;
-        }
-
         public IAwsProfile Impersonate
         {
             get;
-            internal set;
-        }
-
-        protected AwsCommand(IAwsClientFactory clientFactory)
-        {
-            ClientFactory = clientFactory;
+            init;
         }
     }
 }
