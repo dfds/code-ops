@@ -24,8 +24,6 @@ namespace CloudEngineering.CodeOps.Security.Policies.Handlers
                         break;
 
                     default:
-                        context.Fail();
-
                         break;
                 }
             }

@@ -12,7 +12,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands
         protected readonly IAwsProfile _fallbackProfile;
         protected readonly IAwsClientFactory _awsClientFactory;
 
-        protected AwsCommandHandler(IAwsClientFactory awsClientFactory, IAwsProfile fallbackProfile = default)
+        protected AwsCommandHandler(IAwsClientFactory awsClientFactory = default, IAwsProfile fallbackProfile = default)
         {
             _awsClientFactory = awsClientFactory ?? throw new ArgumentNullException(nameof(awsClientFactory));
             _fallbackProfile = fallbackProfile;

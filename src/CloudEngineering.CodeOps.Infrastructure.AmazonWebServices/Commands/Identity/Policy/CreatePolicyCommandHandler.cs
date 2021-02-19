@@ -1,15 +1,13 @@
 ﻿using Amazon.IdentityManagement;
 using Amazon.IdentityManagement.Model;
 using Amazon.Runtime;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ADSync.Infrastructure.AWS.Commands.Identity
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Policy
 {
     public sealed class CreatePolicyCommandHandler : AwsCommandHandler<CreatePolicyCommand, Task>
    {
