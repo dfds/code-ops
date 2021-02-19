@@ -29,7 +29,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 
             try
             {
-                await client.CreateRoleAsync(request);
+                await client.CreateRoleAsync(request, cancellationToken);
             }
             catch (AmazonServiceException e)
             {

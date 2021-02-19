@@ -30,7 +30,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 
             try
             {
-                await client.PutParameterAsync(request);
+                await client.PutParameterAsync(request, cancellationToken);
             }
             catch (AmazonServiceException e)
             {

@@ -25,7 +25,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 
             try
             {
-                await client.DeleteParameterAsync(request);
+                await client.DeleteParameterAsync(request, cancellationToken);
             }
             catch (AmazonServiceException e)
             {

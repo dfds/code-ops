@@ -25,7 +25,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 
             try
             {
-                await client.DeleteRoleAsync(request);
+                await client.DeleteRoleAsync(request, cancellationToken);
             }
             catch (AmazonServiceException e)
             {

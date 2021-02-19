@@ -25,7 +25,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 
             try
             {
-                await client.DeletePolicyAsync(request);
+                await client.DeletePolicyAsync(request, cancellationToken);
             }
             catch (AmazonServiceException e)
             {

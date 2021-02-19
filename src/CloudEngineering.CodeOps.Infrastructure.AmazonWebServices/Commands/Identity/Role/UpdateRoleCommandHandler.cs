@@ -30,7 +30,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 
             try
             {
-                await client.UpdateRoleAsync(request);
+                await client.UpdateRoleAsync(request, cancellationToken);
             }
             catch (AmazonServiceException e)
             {
