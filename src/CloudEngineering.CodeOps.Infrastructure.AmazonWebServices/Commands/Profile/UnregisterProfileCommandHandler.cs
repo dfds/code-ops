@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile
 {
-    public sealed class UnregisterProfileCommandHandler : AwsCommandHandler<RegisterProfileCommand, Task>
+    public sealed class UnregisterProfileCommandHandler : AwsCommandHandler<UnregisterProfileCommand, Task>
     {
         private readonly CredentialProfileStoreChain _credentialProfileStoreChain;
 
@@ -13,19 +13,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Pro
             _credentialProfileStoreChain = new CredentialProfileStoreChain(profileLocation);
         }
 
-        public override Task<Task> Handle(RegisterProfileCommand command, CancellationToken cancellationToken = default)
+        public override Task<Task> Handle(UnregisterProfileCommand command, CancellationToken cancellationToken = default)
         {
-            var profileOptions = new CredentialProfileOptions
-            {
-                SourceProfile = command.Impersonate.SourceProfile,
-                RoleArn = command.Impersonate.RoleArn,
-                AccessKey = command.AccessKey,
-                SecretKey = command.SecretKey
-            };
+            if (_credentialProfileStoreChain.TryGetProfile(command.ProfileName, out _)) return Task.FromResult(Task.CompletedTask);
 
-            var credentialProfile = new CredentialProfile(command.Impersonate.Name, profileOptions);
-
-            _credentialProfileStoreChain.RegisterProfile(credentialProfile);
+            _credentialProfileStoreChain.UnregisterProfile(command.ProfileName);
 
             return Task.FromResult(Task.CompletedTask);
         }

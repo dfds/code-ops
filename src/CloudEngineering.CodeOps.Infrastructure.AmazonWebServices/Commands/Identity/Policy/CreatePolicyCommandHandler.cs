@@ -1,20 +1,25 @@
 ﻿using Amazon.IdentityManagement;
 using Amazon.IdentityManagement.Model;
 using Amazon.Runtime;
+using AutoMapper;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Identity.Policy;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Policy
 {
-    public sealed class CreatePolicyCommandHandler : AwsCommandHandler<CreatePolicyCommand, Task>
-   {
-        public CreatePolicyCommandHandler(IAwsClientFactory awsClientFactory, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
-        { }
+    public sealed class CreatePolicyCommandHandler : AwsCommandHandler<CreatePolicyCommand, ManagedPolicyDto>
+    {
+        private readonly IMapper _mapper;
 
-        public async override Task<Task> Handle(CreatePolicyCommand command, CancellationToken cancellationToken = default)
+        public CreatePolicyCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        {
+            _mapper = mapper;
+        }
+
+        public async override Task<ManagedPolicyDto> Handle(CreatePolicyCommand command, CancellationToken cancellationToken = default)
         {
             using var client = await _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.Impersonate ?? _fallbackProfile);
 
@@ -24,16 +29,18 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
                 PolicyDocument = command.PolicyDocument
             };
 
+            ManagedPolicyDto result;
+
             try
             {
-                await client.CreatePolicyAsync(request, cancellationToken);
+                result = _mapper.Map<ManagedPolicyDto>((await client.CreatePolicyAsync(request, cancellationToken)).Policy);
             }
             catch (AmazonServiceException e)
             {
-                throw new Exception(e.Message, e);
+                throw new AwsFacadeException(e.Message, e);
             }
 
-            return Task.CompletedTask;
+            return result;
         }
     }
 }

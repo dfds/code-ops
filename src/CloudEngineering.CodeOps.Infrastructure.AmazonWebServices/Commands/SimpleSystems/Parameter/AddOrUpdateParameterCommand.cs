@@ -1,11 +1,11 @@
 ﻿using Amazon.SimpleSystemsManagement;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.SimpleSystems.Parameter
 {
-    public sealed class AddOrUpdateParameterCommand : AwsCommand<Task>
+    public sealed class AddOrUpdateParameterCommand : AwsCommand<ParameterDto>
     {
         [JsonPropertyName("paramName")]
         public string ParamName { get; init; }

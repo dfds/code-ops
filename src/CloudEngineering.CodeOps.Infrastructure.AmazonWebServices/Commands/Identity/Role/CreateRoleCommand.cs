@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Identity.Role;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Role
 {
-    public sealed class CreateRoleCommand : AwsCommand<Task>
+    public sealed class CreateRoleCommand : AwsCommand<RoleDto>
     {
         [JsonPropertyName("roleName")]
         public string RoleName { get; init; }
@@ -18,7 +18,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
         [JsonPropertyName("tags")]
         public IEnumerable<KeyValuePair<string, string>> Tags { get; }
 
-        public CreateRoleCommand(string roleName, string policyDocument, string description = "", IEnumerable<KeyValuePair<string, string>> tags = default)
+        public CreateRoleCommand(string roleName, string policyDocument, string description = default, IEnumerable<KeyValuePair<string, string>> tags = default)
         {
             RoleName = roleName;
             PolicyDocument = policyDocument;

@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost
 {
-    public class AwsResultByTimeDto
+    public class ResultByTimeDto
     {
         [JsonPropertyName("groups")]
-        public IEnumerable<AwsGroupDto> Groups { get; set; }
+        public IEnumerable<GroupDto> Groups { get; set; }
 
         [JsonPropertyName("total")]
-        public IEnumerable<KeyValuePair<string, AwsMetricValueDto>> Total { get; set; }
+        public IEnumerable<KeyValuePair<string, MetricValueDto>> Total { get; set; }
 
         [JsonPropertyName("startDate")]
         public DateTime StartDate { get; set; }

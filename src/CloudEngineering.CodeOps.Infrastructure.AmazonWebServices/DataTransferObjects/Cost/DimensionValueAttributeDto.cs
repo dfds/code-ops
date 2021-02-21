@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost
 {
-    public class AwsDimensionValueAttributeDto
+    public class DimensionValueAttributeDto
     {
         [JsonPropertyName("attributes")]
         public IEnumerable<KeyValuePair<string, string>> Attributes { get; set; }

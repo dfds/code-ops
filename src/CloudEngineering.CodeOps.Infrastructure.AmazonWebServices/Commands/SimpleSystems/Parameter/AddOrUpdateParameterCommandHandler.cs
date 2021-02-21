@@ -1,6 +1,8 @@
 ﻿using Amazon.Runtime;
 using Amazon.SimpleSystemsManagement;
 using Amazon.SimpleSystemsManagement.Model;
+using AutoMapper;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
@@ -10,12 +12,16 @@ using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.SimpleSystems.Parameter
 {
-    public sealed class AddOrUpdateParameterCommandHandler : AwsCommandHandler<AddOrUpdateParameterCommand, Task>
+    public sealed class AddOrUpdateParameterCommandHandler : AwsCommandHandler<AddOrUpdateParameterCommand, ParameterDto>
     {
-        public AddOrUpdateParameterCommandHandler(IAwsClientFactory awsClientFactory, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
-        { }
+        private readonly IMapper _mapper;
 
-        public async override Task<Task> Handle(AddOrUpdateParameterCommand command, CancellationToken cancellationToken = default)
+        public AddOrUpdateParameterCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        {
+            _mapper = mapper;
+        }
+
+        public async override Task<ParameterDto> Handle(AddOrUpdateParameterCommand command, CancellationToken cancellationToken = default)
         {
             using var client = await _awsClientFactory.Create<AmazonSimpleSystemsManagementClient>(command.Impersonate ?? _fallbackProfile);
 
@@ -28,16 +34,18 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
                 Tags = command.ParamTags?.Select(kv => new Tag { Key = kv.Key, Value = kv.Value }).ToList()
             };
 
+            ParameterDto result;
+
             try
             {
-                await client.PutParameterAsync(request, cancellationToken);
+                result = _mapper.Map<ParameterDto>(await client.PutParameterAsync(request, cancellationToken));
             }
             catch (AmazonServiceException e)
             {
                 throw new Exception(e.Message, e);
             }
 
-            return Task.CompletedTask;
+            return result;
         }
     }
 }

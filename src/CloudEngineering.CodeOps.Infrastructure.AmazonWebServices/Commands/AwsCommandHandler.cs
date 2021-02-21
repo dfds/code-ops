@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands
 {
-    public abstract class AwsCommandHandler<TCommand, TResult> : ICommandHandler<TCommand, TResult> where TCommand : ICommand<TResult> where TResult : Task
+    public abstract class AwsCommandHandler<TCommand, TResult> : ICommandHandler<TCommand, TResult> where TCommand : ICommand<TResult>
     {
         protected readonly IAwsProfile _fallbackProfile;
         protected readonly IAwsClientFactory _awsClientFactory;

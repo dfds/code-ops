@@ -2,7 +2,7 @@
 using Amazon.CostExplorer.Model;
 using Amazon.Runtime;
 using AutoMapper;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cost
 {
-    public sealed class GetMonthlyTotalCostCommandHandler : AwsCommandHandler<GetMonthlyTotalCostCommand, Task<IEnumerable<AwsCostDto>>>
+    public sealed class GetMonthlyTotalCostCommandHandler : AwsCommandHandler<GetMonthlyTotalCostCommand, IEnumerable<CostDto>>
     {
         private readonly IMapper _mapper;
 
@@ -22,9 +22,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
             _mapper = mapper;
         }
 
-        public async override Task<Task<IEnumerable<AwsCostDto>>> Handle(GetMonthlyTotalCostCommand command, CancellationToken cancellationToken = default)
+        public async override Task<IEnumerable<CostDto>> Handle(GetMonthlyTotalCostCommand command, CancellationToken cancellationToken = default)
         {
-            var result = new List<AwsCostDto>();
+            var result = new List<CostDto>();
             using var client = await _awsClientFactory.Create<IAmazonCostExplorer>(command.Impersonate ?? _fallbackProfile);
 
             try
@@ -66,7 +66,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
 
                     resp = await client.GetCostAndUsageAsync(request, cancellationToken);
 
-                    result.Add(_mapper.Map<AwsCostDto>(resp));
+                    result.Add(_mapper.Map<CostDto>(resp));
                 }
                 while (resp.NextPageToken != null);
             }
@@ -75,7 +75,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
                 throw new Exception(e.Message, e);
             }
 
-            return Task.FromResult(result.AsEnumerable());
+            return result.AsEnumerable();
         }
 
         private static DateInterval CreateDateIntervalForCurrentMonth()

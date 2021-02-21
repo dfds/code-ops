@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost
 {
-    public class AwsGroupDto
+    public class GroupDto
     {
         [JsonPropertyName("keys")] 
         public IEnumerable<string> Keys { get; set; }
 
         [JsonPropertyName("metrics")]
-        public IEnumerable<KeyValuePair<string, AwsMetricValueDto>> Metrics { get; set; }
+        public IEnumerable<KeyValuePair<string, MetricValueDto>> Metrics { get; set; }
     }
 }

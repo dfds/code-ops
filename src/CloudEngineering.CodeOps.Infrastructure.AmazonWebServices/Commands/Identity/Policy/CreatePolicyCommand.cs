@@ -1,9 +1,9 @@
-﻿using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Identity.Policy;
+using System.Text.Json.Serialization;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Policy
 {
-    public sealed class CreatePolicyCommand : AwsCommand<Task>
+    public sealed class CreatePolicyCommand : AwsCommand<ManagedPolicyDto>
     {
         [JsonPropertyName("policyName")]
         public string PolicyName { get; init; }

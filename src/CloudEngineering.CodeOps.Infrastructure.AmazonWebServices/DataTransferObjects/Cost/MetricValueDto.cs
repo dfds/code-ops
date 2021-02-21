@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost
 {
-    public class AwsMetricValueDto
+    public class MetricValueDto
     {
         [JsonPropertyName("amount")]
         public string Amount { get; set; }
