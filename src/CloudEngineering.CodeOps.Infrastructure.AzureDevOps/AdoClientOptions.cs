@@ -4,7 +4,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps
 {
     public sealed class AdoClientOptions
     {
-        public const string Vsts = "Vsts";
+        public const string AdoClient = "AdoClient";
 
         public Uri Issuer { get; set; }
 
