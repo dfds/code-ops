@@ -6,7 +6,6 @@ using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObje
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +26,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 
             var request = new GetParameterRequest
             {
-                Name = command.ParamName
+                Name = command.Name
             };
 
             ParameterDto result;
