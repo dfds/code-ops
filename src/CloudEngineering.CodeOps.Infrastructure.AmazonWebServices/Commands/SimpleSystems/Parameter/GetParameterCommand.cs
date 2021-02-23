@@ -5,8 +5,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 {
     public sealed class GetParameterCommand : AwsCommand<ParameterDto>
     {
-        [JsonPropertyName("paramName")]
-        public string ParamName { get; init; }
+        [JsonPropertyName("name")]
+        public string Name { get; init; }
 
         public GetParameterCommand(string parameterName)
         {
@@ -15,7 +15,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
                 parameterName = parameterName.TrimEnd('/');
             }
 
-            ParamName = parameterName;
+            Name = parameterName;
         }
     }
 }

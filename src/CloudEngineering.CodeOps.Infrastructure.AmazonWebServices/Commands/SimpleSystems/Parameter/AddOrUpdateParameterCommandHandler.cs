@@ -24,17 +24,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
         public async override Task<ParameterDto> Handle(AddOrUpdateParameterCommand command, CancellationToken cancellationToken = default)
         {
             using var client = await _awsClientFactory.Create<AmazonSimpleSystemsManagementClient>(command.Impersonate ?? _fallbackProfile);
-
-            var request = new PutParameterRequest
-            {
-                Name = command.ParamName,
-                Value = command.ParamValue,
-                Type = command.ParamType,
-                Overwrite = command.ParamOverwrite,
-                Tags = command.ParamTags?.Select(kv => new Tag { Key = kv.Key, Value = kv.Value }).ToList()
-            };
-
+                        
             ParameterDto result;
+
+            var request = _mapper.Map<PutParameterRequest>(command.Parameter);
 
             try
             {
