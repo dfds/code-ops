@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter
 {
@@ -9,5 +10,17 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransfer
 
         [JsonPropertyName("value")]
         public string Value { get; set; }
+
+        [JsonPropertyName("paramType")]
+        public string ParamType { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("tags")]
+        public KeyValuePair<string, string>[] Tags { get; init; }
+
+        [JsonPropertyName("overwrite")]
+        public bool Overwrite { get; init; }
     }
 }

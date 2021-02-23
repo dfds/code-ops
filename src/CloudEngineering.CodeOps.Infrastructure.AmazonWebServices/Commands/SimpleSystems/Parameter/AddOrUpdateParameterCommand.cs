@@ -1,5 +1,4 @@
-﻿using Amazon.SimpleSystemsManagement;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
+﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -7,20 +6,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 {
     public sealed class AddOrUpdateParameterCommand : AwsCommand<ParameterDto>
     {
-        [JsonPropertyName("paramName")]
-        public string ParamName { get; init; }
-
-        [JsonPropertyName("paramValue")]
-        public string ParamValue { get; init; }
-
-        [JsonPropertyName("paramType")]
-        public string ParamType { get; init; }
-
-        [JsonPropertyName("paramTags")]
-        public KeyValuePair<string, string>[] ParamTags { get; init; }
-
-        [JsonPropertyName("paramOverwrite")]
-        public bool ParamOverwrite { get; init; }
+        [JsonPropertyName("parameter")]
+        public ParameterDto Parameter { get; init; }
 
         public AddOrUpdateParameterCommand(string parameterName, string parameterValue, string parameterType = "string", bool parameterOverwrite = false, params KeyValuePair<string, string>[] paramTags)
         {
@@ -29,11 +16,14 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
                 parameterName = parameterName.TrimEnd('/');
             }
 
-            ParamName = parameterName;
-            ParamValue = parameterValue;
-            ParamType = ParameterType.FindValue(parameterType);
-            ParamOverwrite = parameterOverwrite;
-            ParamTags = paramTags;
+            Parameter = new ParameterDto()
+            {
+                Name = parameterName,
+                Value = parameterValue,
+                Overwrite = parameterOverwrite,
+                Tags = paramTags,
+                ParamType = parameterType
+            };
         }
     }
 }
