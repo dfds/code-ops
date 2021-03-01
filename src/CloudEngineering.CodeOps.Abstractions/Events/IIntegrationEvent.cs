@@ -16,7 +16,7 @@ namespace CloudEngineering.CodeOps.Abstractions.Events
 		DateTime CreationDate { get; }
 
 		[JsonPropertyName("schemaVersion")]
-		int SchemaVersion { get; }
+		string SchemaVersion { get; }
 
 		[JsonPropertyName("type")]
 		string Type { get; }

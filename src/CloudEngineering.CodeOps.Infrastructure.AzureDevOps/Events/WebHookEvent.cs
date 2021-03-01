@@ -35,7 +35,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events
 
         public DateTime CreationDate => DateTime.Now;
 
-        public int SchemaVersion => 1;
+        public string SchemaVersion => "1";
 
         public string Type => EventType;
 

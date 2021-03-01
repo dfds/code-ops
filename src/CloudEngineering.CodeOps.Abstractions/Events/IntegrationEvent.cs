@@ -16,7 +16,7 @@ namespace CloudEngineering.CodeOps.Abstractions.Events
 		public Guid CorrelationId { get; init; }
 
 		[JsonPropertyName("schemaVersion")]
-		public int SchemaVersion { get; init; }
+		public string SchemaVersion { get; init; }
 
 		[JsonPropertyName("type")]
 		public string Type { get; init; }
@@ -25,18 +25,18 @@ namespace CloudEngineering.CodeOps.Abstractions.Events
 		public JsonElement? Payload { get; init; }
 
 		[JsonConstructor]
-		public IntegrationEvent(string type, JsonElement payload, Guid correlationId = default, int schemaVersion = 1) : this(Guid.NewGuid(), type, payload, DateTime.UtcNow, correlationId, schemaVersion)
+		public IntegrationEvent(string type, JsonElement? payload, Guid correlationId = default, string schemaVersion = "1") : this(type, payload, correlationId, schemaVersion, Guid.NewGuid(), DateTime.UtcNow)
 		{
 		}
 
-		public IntegrationEvent(Guid id, string type, JsonElement payload = default, DateTime creationDate = default, Guid correlationId = default, int schemaVersion = 1)
+		public IntegrationEvent(string type, JsonElement? payload = default, Guid correlationId = default, string schemaVersion = "1", Guid id = default, DateTime creationDate = default)
 		{
-			Id = id;
 			Type = type;
 			Payload = payload;
-			CreationDate = (creationDate != DateTime.MinValue) ? creationDate : DateTime.UtcNow;
 			CorrelationId = correlationId;
 			SchemaVersion = schemaVersion;
+			Id = id;
+			CreationDate = (creationDate != DateTime.MinValue) ? creationDate : DateTime.UtcNow;
 		}
 	}
 }
