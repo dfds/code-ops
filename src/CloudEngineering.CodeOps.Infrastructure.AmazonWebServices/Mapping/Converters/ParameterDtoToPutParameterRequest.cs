@@ -3,12 +3,10 @@ using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using System.Linq;
 
-namespace CostJanitor.Infrastructure.CostProviders.Aws.Mapping.Converters
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Converters
 {
     public class ParameterDtoToPutParameterRequest : ITypeConverter<ParameterDto, PutParameterRequest>
     {
-        private readonly IMapper _mapper;
-
         public PutParameterRequest Convert(ParameterDto source, PutParameterRequest destination, ResolutionContext context)
         {
             destination ??= new PutParameterRequest();

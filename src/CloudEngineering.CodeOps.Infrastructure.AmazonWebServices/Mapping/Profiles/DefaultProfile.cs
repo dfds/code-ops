@@ -2,9 +2,9 @@
 using Amazon.SimpleSystemsManagement.Model;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
-using CostJanitor.Infrastructure.CostProviders.Aws.Mapping.Converters;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Converters;
 
-namespace CostJanitor.Infrastructure.CostProviders.Aws.Mapping.Profiles
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Profiles
 {
     public sealed class DefaultProfile : AutoMapper.Profile
     {

@@ -5,7 +5,7 @@ using Amazon.CostExplorer.Model;
 using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
 
-namespace CostJanitor.Infrastructure.CostProviders.Aws.Mapping.Converters
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Converters
 {
     public class GetCostAndUsageResponseToCostDto : ITypeConverter<GetCostAndUsageResponse, CostDto>
     {
