@@ -7,10 +7,10 @@ namespace CloudEngineering.CodeOps.Abstractions.Events
 	public interface IIntegrationEvent : IEvent
 	{
 		[JsonPropertyName("id")]
-		Guid Id { get; }
+		string Id { get; }
 
 		[JsonPropertyName("correlationId")]
-		Guid CorrelationId { get; }
+		string CorrelationId { get; }
 
 		[JsonPropertyName("creationDate")]
 		DateTime CreationDate { get; }

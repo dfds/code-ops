@@ -8,7 +8,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events
     public class WebHookEvent : IIntegrationEvent
     {
         [JsonPropertyName("id")]
-        public Guid Id { get; init; }
+        public string Id { get; init; }
 
         [JsonPropertyName("publisherId")]
         public string PublisherId { get; init; }
@@ -31,7 +31,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events
         [JsonPropertyName("resourceContainers")]
         public JsonElement? ResourceContainers { get; init; }
 
-        public Guid CorrelationId => Id;
+        public string CorrelationId => Id;
 
         public DateTime CreationDate => DateTime.Now;
 
