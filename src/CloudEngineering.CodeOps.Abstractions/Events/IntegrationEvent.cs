@@ -25,7 +25,11 @@ namespace CloudEngineering.CodeOps.Abstractions.Events
 		public JsonElement? Payload { get; init; }
 
 		[JsonConstructor]
-		public IntegrationEvent(string type, JsonElement payload = default, Guid id = default, DateTime creationDate = default, Guid correlationId = default, int schemaVersion = 1)
+		public IntegrationEvent(string type, JsonElement payload, Guid correlationId = default, int schemaVersion = 1) : this(Guid.NewGuid(), type, payload, DateTime.UtcNow, correlationId, schemaVersion)
+		{
+		}
+
+		public IntegrationEvent(Guid id, string type, JsonElement payload = default, DateTime creationDate = default, Guid correlationId = default, int schemaVersion = 1)
 		{
 			Id = id;
 			Type = type;
