@@ -18,20 +18,13 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
 
         public IAggregateRoot Convert(AdoDto source, IAggregateRoot destination, ResolutionContext context)
         {
-            switch (source)
+            return source switch
             {
-                case BuildDto build:
-                    return _mapper.Map<IAggregateRoot>(build);
-
-                case ProjectDto project:
-                    return _mapper.Map<IAggregateRoot>(project);
-
-                case ReleaseDto release:
-                    return _mapper.Map<IAggregateRoot>(release);
-                    
-                default:
-                    return null;
-            }
+                BuildDto build => _mapper.Map<IAggregateRoot>(build),
+                ProjectDto project => _mapper.Map<IAggregateRoot>(project),
+                ReleaseDto release => _mapper.Map<IAggregateRoot>(release),
+                _ => null,
+            };
         }
     }
 }
