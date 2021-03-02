@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ado", ".ado", "{F5BDABA2-5AEE-4FEC-80BF-652AD51690E0}"
 	ProjectSection(SolutionItems) = preProject
-		pipeline.yaml = pipeline.yaml
+		pipeline.yml = pipeline.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AzureDevOps", "src\CloudEngineering.CodeOps.Infrastructure.AzureDevOps\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.csproj", "{3DE90C90-5F10-450D-8B73-9E4E98ECBD23}"
@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AmazonWebServices", "src\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.csproj", "{E6B38218-012D-4F36-8F41-632681616B74}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tests", ".tests", "{18C7D691-211D-42E7-A423-3E2B02B286DA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{18C7D691-211D-42E7-A423-3E2B02B286DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest", "test\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.csproj", "{54579483-4237-4992-9F27-4BA31A35FFAC}"
 EndProject
