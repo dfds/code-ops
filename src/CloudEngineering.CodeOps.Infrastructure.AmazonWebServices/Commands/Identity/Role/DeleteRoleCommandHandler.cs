@@ -11,12 +11,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 {
     public sealed class DeleteRoleCommandHandler : AwsCommandHandler<DeleteRoleCommand, Task>
    {
-        public DeleteRoleCommandHandler(IAwsClientFactory awsClientFactory, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        public DeleteRoleCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         { }
 
         public async override Task<Task> Handle(DeleteRoleCommand command, CancellationToken cancellationToken = default)
         {
-            using var client = await _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.Impersonate ?? _fallbackProfile);
+            using var client = _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.AssumeProfile);
 
             var request = new DeleteRoleRequest()
             {

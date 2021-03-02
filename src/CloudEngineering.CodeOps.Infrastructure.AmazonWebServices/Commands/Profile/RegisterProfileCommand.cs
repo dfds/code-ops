@@ -1,10 +1,12 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile
 {
     public sealed class RegisterProfileCommand : AwsCommand<Task>
     {
+        [JsonPropertyName("profile")]
         public IAwsProfile Profile { get; init; }
 
         internal string AccessKey { get; init; }

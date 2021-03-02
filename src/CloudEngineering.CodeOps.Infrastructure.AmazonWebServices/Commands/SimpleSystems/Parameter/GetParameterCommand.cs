@@ -8,14 +8,14 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
         [JsonPropertyName("name")]
         public string Name { get; init; }
 
-        public GetParameterCommand(string parameterName)
+        public GetParameterCommand(string name)
         {
-            if (parameterName.EndsWith("/"))
+            if (name.EndsWith("/"))
             {
-                parameterName = parameterName.TrimEnd('/');
+                name = name.TrimEnd('/');
             }
 
-            Name = parameterName;
+            Name = name;
         }
     }
 }

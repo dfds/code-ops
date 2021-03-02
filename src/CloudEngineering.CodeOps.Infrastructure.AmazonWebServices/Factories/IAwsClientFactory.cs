@@ -1,10 +1,10 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
-using System.Threading.Tasks;
+﻿using Amazon.Runtime;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories
 {
     public interface IAwsClientFactory
     {
-        Task<T> Create<T>(IAwsProfile credentialSource = default) where T : class;
+        T Create<T>(IAwsProfile assumeProfile = default) where T : IAmazonService;
     }
 }

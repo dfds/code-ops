@@ -1,38 +1,37 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
+﻿using Amazon.Runtime;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security;
-using Amazon.Runtime;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Amazon.Extensions.NETCore.Setup;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories
 {
     public sealed class AwsClientFactory : IAwsClientFactory
     {
-        private readonly IOptions<AWSOptions> _options;
+        private readonly IOptions<AwsFacadeOptions> _options;
+        private readonly IAwsCredentialResolver _awsCredentialResolver;
 
-        public AwsClientFactory(IOptions<AWSOptions> options)
+        public AwsClientFactory(IOptions<AwsFacadeOptions> options, IAwsCredentialResolver awsCredentialResolver = default)
         {
             _options = options;
+            _awsCredentialResolver = awsCredentialResolver ?? new AwsCredentialResolver(_options);
         }
 
-        public async Task<T> Create<T>(IAwsProfile impersonate = default) where T : class
+        public T Create<T>(IAwsProfile assumeProfile = default) where T : IAmazonService
         {
-            IAwsCredentials impersonationCredentials = null;
+            AWSCredentials impersonateCredentials = _awsCredentialResolver.Resolve(_options.Value.Impersonate) as AwsCredentials ?? FallbackCredentialsFactory.GetCredentials();
+            AWSCredentials sdkClientCredentials = impersonateCredentials;
 
-            if (impersonate != null)
+            if (assumeProfile != null)
             {
-                impersonationCredentials = await impersonate.GetCredentials();
+                var assumeProfileCredentials = _awsCredentialResolver.Resolve(assumeProfile) as AwsCredentials;
+
+                sdkClientCredentials = new AssumeRoleAWSCredentials(impersonateCredentials, assumeProfile.RoleArn, assumeProfileCredentials.Token);
             }
 
-            var clientCredentials = impersonationCredentials != null ? new AssumeRoleAWSCredentials(FallbackCredentialsFactory.GetCredentials(), impersonate.RoleArn, impersonationCredentials.RoleSessionName) : FallbackCredentialsFactory.GetCredentials();
+            var clientOfTConstructor = typeof(T).GetConstructor(new[] { sdkClientCredentials.GetType(), _options.Value.Region.GetType() });
+            var clientOfT = (T)clientOfTConstructor.Invoke(new object[] { sdkClientCredentials, _options.Value.Region });
 
-            var client = (typeof(T)) switch
-            {
-                _ => (IAmazonService)typeof(T).GetConstructor(new[] { clientCredentials.GetType(), _options.Value.Region.GetType() })?.Invoke(new object[] { clientCredentials, _options.Value.Region }),
-            };
-
-            return client as T;
+            return clientOfT;
         }
     }
 }

@@ -9,20 +9,20 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
         [JsonPropertyName("parameter")]
         public ParameterDto Parameter { get; init; }
 
-        public AddOrUpdateParameterCommand(string parameterName, string parameterValue, string parameterType = "string", bool parameterOverwrite = false, params KeyValuePair<string, string>[] paramTags)
+        public AddOrUpdateParameterCommand(string name, string value, string type = "string", bool overwrite = false, params KeyValuePair<string, string>[] tags)
         {
-            if (parameterName.EndsWith("/"))
+            if (name.EndsWith("/"))
             {
-                parameterName = parameterName.TrimEnd('/');
+                name = name.TrimEnd('/');
             }
 
             Parameter = new ParameterDto()
             {
-                Name = parameterName,
-                Value = parameterValue,
-                Overwrite = parameterOverwrite,
-                Tags = paramTags,
-                ParamType = parameterType
+                Name = name,
+                Value = value,
+                Overwrite = overwrite,
+                Tags = tags,
+                ParamType = type
             };
         }
     }

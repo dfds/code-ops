@@ -17,7 +17,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
     {
         private readonly IMapper _mapper;
 
-        public GetMonthlyTotalCostCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        public GetMonthlyTotalCostCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper) : base(awsClientFactory)
         {
             _mapper = mapper;
         }
@@ -25,7 +25,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
         public async override Task<IEnumerable<CostDto>> Handle(GetMonthlyTotalCostCommand command, CancellationToken cancellationToken = default)
         {
             var result = new List<CostDto>();
-            using var client = await _awsClientFactory.Create<IAmazonCostExplorer>(command.Impersonate ?? _fallbackProfile);
+            using var client = _awsClientFactory.Create<IAmazonCostExplorer>(command.AssumeProfile);
 
             try
             {

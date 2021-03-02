@@ -1,18 +1,14 @@
-﻿namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
+﻿using Amazon.Runtime;
+
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
-    public class AwsCredentials : IAwsCredentials
+    public sealed class AwsCredentials : ImmutableCredentials, IAwsCredentials
     {
-        public string AccessKey { get; init; }
-
-        public string SecretKey { get; init; }
-
-        public string RoleSessionName { get; init; }
-
-        public AwsCredentials(string accessKey, string secretKey, string roleSessionName)
+        public AwsCredentials(string accessKey, string secretKey, string token) : base(accessKey, secretKey, token)
         {
-            AccessKey = accessKey;
-            SecretKey = secretKey;
-            RoleSessionName = roleSessionName;
         }
+
+        public static implicit operator AWSCredentials(AwsCredentials c) => c;
+        public static explicit operator AwsCredentials(AWSCredentials c) => c.GetCredentials() as AwsCredentials;
     }
 }

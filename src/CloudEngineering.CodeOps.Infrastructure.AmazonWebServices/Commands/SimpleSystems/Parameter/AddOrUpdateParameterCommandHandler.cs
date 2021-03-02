@@ -4,9 +4,7 @@ using Amazon.SimpleSystemsManagement.Model;
 using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,14 +14,14 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
     {
         private readonly IMapper _mapper;
 
-        public AddOrUpdateParameterCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        public AddOrUpdateParameterCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper) : base(awsClientFactory)
         {
             _mapper = mapper;
         }
 
         public async override Task<ParameterDto> Handle(AddOrUpdateParameterCommand command, CancellationToken cancellationToken = default)
         {
-            using var client = await _awsClientFactory.Create<AmazonSimpleSystemsManagementClient>(command.Impersonate ?? _fallbackProfile);
+            using var client = _awsClientFactory.Create<AmazonSimpleSystemsManagementClient>(command.AssumeProfile);
                         
             ParameterDto result;
 

@@ -4,7 +4,6 @@ using Amazon.Runtime;
 using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Identity.Policy;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,14 +13,14 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
     {
         private readonly IMapper _mapper;
 
-        public CreatePolicyCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        public CreatePolicyCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper) : base(awsClientFactory)
         {
             _mapper = mapper;
         }
 
         public async override Task<ManagedPolicyDto> Handle(CreatePolicyCommand command, CancellationToken cancellationToken = default)
         {
-            using var client = await _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.Impersonate ?? _fallbackProfile);
+            using var client = _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.AssumeProfile);
 
             var request = new CreatePolicyRequest()
             {

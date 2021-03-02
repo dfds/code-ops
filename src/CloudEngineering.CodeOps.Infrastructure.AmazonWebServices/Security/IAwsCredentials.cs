@@ -1,4 +1,6 @@
-﻿namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
+﻿using Amazon.Runtime;
+
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
     public interface IAwsCredentials
     {
@@ -6,6 +8,6 @@
 
         string SecretKey { get; }
 
-        string RoleSessionName { get; }
+        string Token { get; }
     }
 }

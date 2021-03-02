@@ -1,8 +1,6 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
-using Amazon.Runtime;
-using Amazon.Runtime.CredentialManagement;
-using System;
-using System.Threading.Tasks;
+﻿using Amazon.Runtime.CredentialManagement;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
+using Microsoft.Extensions.Options;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
@@ -10,26 +8,19 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
     {
         private readonly CredentialProfileStoreChain _credentialProfileStoreChain;
 
-        public AwsCredentialResolver(string profileLocation)
+        public AwsCredentialResolver(IOptions<AwsFacadeOptions> options)
         {
-            _credentialProfileStoreChain = new CredentialProfileStoreChain(profileLocation);
+            _credentialProfileStoreChain = new CredentialProfileStoreChain(options.Value.ProfilesLocation);
         }
 
-        public async Task<IAwsCredentials> Resolve(IAwsProfile profile = default, string roleSessionName = default)
+        public IAwsCredentials Resolve(IAwsProfile profile = default)
         {
             if (!_credentialProfileStoreChain.TryGetAWSCredentials(profile?.Name, out var credentialsHandle))
             {
-                throw new ArgumentException($"Failed to retrieve credentials for profile: {profile?.Name}");
+                throw new AwsFacadeException($"Failed to retrieve credentials for profile: {profile?.Name}");
             }
 
-            var credentials = await credentialsHandle.GetCredentialsAsync();
-
-            if (credentialsHandle is AssumeRoleAWSCredentials awsCredentials)
-            {
-                roleSessionName = awsCredentials.RoleSessionName;
-            }
-            
-            return new AwsCredentials(credentials.AccessKey, credentials.SecretKey, roleSessionName);
+            return credentialsHandle.GetCredentials() as IAwsCredentials; 
         }
     }
 }

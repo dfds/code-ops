@@ -5,7 +5,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands
 {
     public abstract class AwsCommand<TResult> : ICommand<TResult>
     {
-        public IAwsProfile Impersonate
+        public IAwsProfile AssumeProfile
         {
             get;
             init;

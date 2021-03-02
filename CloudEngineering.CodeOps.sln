@@ -30,6 +30,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AmazonWebServices", "src\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.csproj", "{E6B38218-012D-4F36-8F41-632681616B74}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tests", ".tests", "{18C7D691-211D-42E7-A423-3E2B02B286DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest", "test\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.csproj", "{54579483-4237-4992-9F27-4BA31A35FFAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,9 +64,16 @@ Global
 		{E6B38218-012D-4F36-8F41-632681616B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6B38218-012D-4F36-8F41-632681616B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6B38218-012D-4F36-8F41-632681616B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54579483-4237-4992-9F27-4BA31A35FFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54579483-4237-4992-9F27-4BA31A35FFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54579483-4237-4992-9F27-4BA31A35FFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54579483-4237-4992-9F27-4BA31A35FFAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54579483-4237-4992-9F27-4BA31A35FFAC} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9448AE6-B1F7-4EC1-BD90-A66D74064341}

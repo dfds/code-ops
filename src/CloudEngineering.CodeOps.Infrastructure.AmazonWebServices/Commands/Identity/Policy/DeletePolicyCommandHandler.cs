@@ -11,12 +11,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 {
     public sealed class DeletePolicyCommandHandler : AwsCommandHandler<DeletePolicyCommand, Task>
    {
-        public DeletePolicyCommandHandler(IAwsClientFactory awsClientFactory, IAwsProfile fallbackProfile = default) : base(awsClientFactory, fallbackProfile)
+        public DeletePolicyCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         { }
 
         public async override Task<Task> Handle(DeletePolicyCommand command, CancellationToken cancellationToken = default)
         {
-            using var client = await _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.Impersonate ?? _fallbackProfile);
+            using var client = _awsClientFactory.Create<AmazonIdentityManagementServiceClient>(command.AssumeProfile);
 
             var request = new DeletePolicyRequest()
             {

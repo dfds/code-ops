@@ -5,17 +5,17 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 {
     public sealed class DeleteParameterCommand : AwsCommand<Task>
     {
-        [JsonPropertyName("paramName")]
-        public string ParamName { get; init; }
+        [JsonPropertyName("name")]
+        public string Name { get; init; }
 
-        public DeleteParameterCommand(string parameterName)
+        public DeleteParameterCommand(string name)
         {
-            if (parameterName.EndsWith("/"))
+            if (name.EndsWith("/"))
             {
-                parameterName = parameterName.TrimEnd('/');
+                name = name.TrimEnd('/');
             }
 
-            ParamName = parameterName;
+            Name = name;
         }
     }
 }

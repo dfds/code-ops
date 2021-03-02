@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security;
-
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity
+﻿namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity
 {
     public interface IAwsProfile
     {
@@ -10,8 +7,6 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity
         string Name { get; }
 
         string RoleArn { get; }
-
-        Task<IAwsCredentials> GetCredentials();
     }
 
 }

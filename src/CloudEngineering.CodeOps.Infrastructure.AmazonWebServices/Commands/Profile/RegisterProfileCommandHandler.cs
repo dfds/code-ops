@@ -1,4 +1,5 @@
 ﻿using Amazon.Runtime.CredentialManagement;
+using Microsoft.Extensions.Options;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,22 +9,22 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Pro
     {
         private readonly CredentialProfileStoreChain _credentialProfileStoreChain;
 
-        public RegisterProfileCommandHandler(string profileLocation)
+        public RegisterProfileCommandHandler(IOptions<AwsFacadeOptions> options)
         {
-            _credentialProfileStoreChain = new CredentialProfileStoreChain(profileLocation);
+            _credentialProfileStoreChain = new CredentialProfileStoreChain(options.Value.ProfilesLocation);
         }
 
         public override Task<Task> Handle(RegisterProfileCommand command, CancellationToken cancellationToken = default)
         {
             var profileOptions = new CredentialProfileOptions
             {
-                SourceProfile = command.Impersonate.SourceProfile,
-                RoleArn = command.Impersonate.RoleArn,
+                SourceProfile = command.Profile.SourceProfile,
+                RoleArn = command.Profile.RoleArn,
                 AccessKey = command.AccessKey,
                 SecretKey = command.SecretKey
             };
 
-            var credentialProfile = new CredentialProfile(command.Impersonate.Name, profileOptions);
+            var credentialProfile = new CredentialProfile(command.Profile.Name, profileOptions);
 
             _credentialProfileStoreChain.RegisterProfile(credentialProfile);
 
