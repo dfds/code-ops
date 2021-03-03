@@ -1,10 +1,10 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest.Fixtures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CloudEngineering.CodeOps.Infrastructure.IntegrationTest.Ado
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest
 {
     public class AdoClientTests : IClassFixture<ConfigurationFixture>
     {
@@ -15,7 +15,6 @@ namespace CloudEngineering.CodeOps.Infrastructure.IntegrationTest.Ado
             _fixture = fixture;
         }
 
-        [Fact(Skip = "Move to CloudEngineering.CodeOps")]
         public async Task CanGetProjects()
         {
             //Arrange
