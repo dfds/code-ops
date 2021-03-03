@@ -4,6 +4,6 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
     public interface IAwsCredentialResolver
     {
-        IAwsCredentials Resolve(IAwsProfile profile);
+        AwsCredentials Resolve(IAwsProfile profile);
     }
 }

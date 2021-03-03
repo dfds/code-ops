@@ -13,14 +13,14 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
             _credentialProfileStoreChain = new CredentialProfileStoreChain(options.Value.ProfilesLocation);
         }
 
-        public IAwsCredentials Resolve(IAwsProfile profile = default)
+        public AwsCredentials Resolve(IAwsProfile profile = default)
         {
             if (!_credentialProfileStoreChain.TryGetAWSCredentials(profile?.Name, out var credentialsHandle))
             {
                 throw new AwsFacadeException($"Failed to retrieve credentials for profile: {profile?.Name}");
             }
 
-            return credentialsHandle.GetCredentials() as IAwsCredentials; 
+            return (AwsCredentials)credentialsHandle.GetCredentials(); 
         }
     }
 }

@@ -19,12 +19,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories
 
         public T Create<T>(IAwsProfile assumeProfile = default) where T : IAmazonService
         {
-            AWSCredentials impersonateCredentials = _awsCredentialResolver.Resolve(_options.Value.Impersonate) as AwsCredentials ?? FallbackCredentialsFactory.GetCredentials();
+            AWSCredentials impersonateCredentials = _awsCredentialResolver.Resolve(_options.Value.Impersonate) ?? FallbackCredentialsFactory.GetCredentials();
             AWSCredentials sdkClientCredentials = impersonateCredentials;
 
             if (assumeProfile != null)
             {
-                var assumeProfileCredentials = _awsCredentialResolver.Resolve(assumeProfile) as AwsCredentials;
+                var assumeProfileCredentials = _awsCredentialResolver.Resolve(assumeProfile);
 
                 sdkClientCredentials = new AssumeRoleAWSCredentials(impersonateCredentials, assumeProfile.RoleArn, assumeProfileCredentials.Token);
             }
