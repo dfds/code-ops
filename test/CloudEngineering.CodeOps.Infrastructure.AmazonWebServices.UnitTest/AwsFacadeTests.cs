@@ -1,11 +1,10 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Fixtures;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Xunit;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest
 {
     public class AwsFacadeTests : IClassFixture<ServiceProviderFixture>
     {

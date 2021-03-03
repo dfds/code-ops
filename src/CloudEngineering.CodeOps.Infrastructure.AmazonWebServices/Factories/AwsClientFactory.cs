@@ -1,4 +1,5 @@
-﻿using Amazon.Runtime;
+﻿using Amazon;
+using Amazon.Runtime;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security;
 using Microsoft.Extensions.Options;
@@ -27,9 +28,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories
 
                 sdkClientCredentials = new AssumeRoleAWSCredentials(impersonateCredentials, assumeProfile.RoleArn, assumeProfileCredentials.Token);
             }
-
-            var clientOfTConstructor = typeof(T).GetConstructor(new[] { sdkClientCredentials.GetType(), _options.Value.Region.GetType() });
-            var clientOfT = (T)clientOfTConstructor.Invoke(new object[] { sdkClientCredentials, _options.Value.Region });
+            
+            var clientOfTConstructor = typeof(T).GetConstructor(new[] { typeof(AWSCredentials), typeof(RegionEndpoint) });
+            var clientOfT = (T)clientOfTConstructor.Invoke(new object[] { sdkClientCredentials, RegionEndpoint.GetBySystemName(_options.Value.Region) });
 
             return clientOfT;
         }

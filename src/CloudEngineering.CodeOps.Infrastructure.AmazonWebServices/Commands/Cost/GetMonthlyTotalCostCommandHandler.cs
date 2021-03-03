@@ -4,7 +4,6 @@ using Amazon.Runtime;
 using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +24,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
         public async override Task<IEnumerable<CostDto>> Handle(GetMonthlyTotalCostCommand command, CancellationToken cancellationToken = default)
         {
             var result = new List<CostDto>();
-            using var client = _awsClientFactory.Create<IAmazonCostExplorer>(command.AssumeProfile);
+            using var client = _awsClientFactory.Create<AmazonCostExplorerClient>(command.AssumeProfile);
 
             try
             {
