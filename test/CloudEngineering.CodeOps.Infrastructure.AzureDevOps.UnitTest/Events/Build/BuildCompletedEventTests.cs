@@ -1,9 +1,9 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events.Build;
 using System;
 using System.Text.Json;
 using Xunit;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Events
+namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Events.Build
 {
     public class BuildCompletedEventTests
     {
@@ -18,6 +18,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Events
 
             //Assert
             Assert.NotNull(sut);
+            Assert.Equal("build.complete", BuildCompletedEvent.EventIdentifier);
         }
 
         [Fact]

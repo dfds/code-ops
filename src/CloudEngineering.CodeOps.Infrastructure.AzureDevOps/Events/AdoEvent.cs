@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events
 {
-    public class WebHookEvent : IIntegrationEvent
+    public class AdoEvent : IIntegrationEvent
     {
         [JsonPropertyName("id")]
         public string Id { get; init; }

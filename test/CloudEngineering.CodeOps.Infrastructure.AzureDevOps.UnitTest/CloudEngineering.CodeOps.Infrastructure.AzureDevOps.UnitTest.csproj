@@ -25,4 +25,10 @@
       <ProjectReference Include="..\..\src\CloudEngineering.CodeOps.Infrastructure.AzureDevOps\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Http\Middleware\" />
+      <Folder Include="Mapping\Converters\" />
+      <Folder Include="Mapping\Profiles\" />
+    </ItemGroup>
+
 </Project>

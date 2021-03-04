@@ -1,20 +1,22 @@
 ﻿using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
 using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events.Build;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Events.Release;
 using System;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
 {
-    public class WebHookEventToVstsDtoConverter : ITypeConverter<WebHookEvent, AdoDto>
+    public class AdoEventToAdoDtoConverter : ITypeConverter<AdoEvent, AdoDto>
     {
         private readonly IAdoClient _vstsClient;
 
-        public WebHookEventToVstsDtoConverter(IAdoClient vstsClient) 
+        public AdoEventToAdoDtoConverter(IAdoClient vstsClient) 
         {
             _vstsClient = vstsClient;
         }
 
-        public AdoDto Convert(WebHookEvent source, AdoDto destination, ResolutionContext context)
+        public AdoDto Convert(AdoEvent source, AdoDto destination, ResolutionContext context)
         {
             Guid? projectId;
 

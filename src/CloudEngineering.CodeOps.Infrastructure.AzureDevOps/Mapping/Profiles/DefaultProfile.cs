@@ -10,11 +10,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Profiles
     {
         public DefaultProfile()
         {
-            CreateMap<JsonElement, WebHookEvent>()
-            .ConvertUsing<JsonElementToWebHookEventConverter>();
+            CreateMap<JsonElement, AdoEvent>()
+            .ConvertUsing<JsonElementToAdoEventConverter>();
 
-            CreateMap<WebHookEvent, AdoDto>()
-            .ConvertUsing<WebHookEventToVstsDtoConverter>();
+            CreateMap<AdoEvent, AdoDto>()
+            .ConvertUsing<AdoEventToAdoDtoConverter>();
 
             CreateMap<AdoDto, IAggregateRoot>()
             .ConvertUsing<AdoDtoToAggregateRootConverter>();
