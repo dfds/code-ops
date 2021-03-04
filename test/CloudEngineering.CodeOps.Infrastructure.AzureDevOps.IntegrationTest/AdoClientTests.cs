@@ -1,6 +1,8 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest.Fixtures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -15,12 +17,15 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest
             _fixture = fixture;
         }
 
+        [Fact]
         public async Task CanGetProjects()
         {
             //Arrange
             var options = new AdoClientOptions()
             {
-                ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientAccessToken")
+                ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientAccessToken"),
+                Issuer = _fixture.Configuration.GetValue<Uri>("AdoClient:Issuer"),
+                RedirectUri = _fixture.Configuration.GetValue<Uri>("AdoClient:RedirectUri")                
             };
 
             var sut = new AdoClient(Options.Create(options));
@@ -30,6 +35,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest
 
             //Assert
             Assert.NotNull(projects);
+            Assert.True(projects.Any());
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Caching;
-using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
+using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Caching.Memory;
@@ -10,26 +10,25 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Middleware
 {
     public sealed class StsCallbackMiddleware : IMiddleware
     {
         private readonly IMemoryCache _cache;
-        private readonly IOptions<AdoClientOptions> _vstsOptions;
+        private readonly IOptions<AdoClientOptions> _options;
         private readonly HttpClient _httpClient;
 
         public StsCallbackMiddleware(IMemoryCache cache, IOptions<AdoClientOptions> options, HttpClient client)
         {
             _cache = cache;
-            _vstsOptions = options;
+            _options = options;
             _httpClient = client;
         }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            if (context.Request.Path.Value == _vstsOptions.Value.RedirectUri.AbsolutePath)
+            if (context.Request.Path.Value == _options.Value.RedirectUri.AbsolutePath)
             {
                 if (!context.Request.QueryString.HasValue || !context.Request.QueryString.Value.Contains("code"))
                 {
@@ -39,13 +38,13 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Middleware
                 var formData = new Dictionary<string, string>();
                 var code = QueryHelpers.ParseQuery(context.Request.QueryString.Value)["code"];
 
-                formData.Add("client_assertion", _vstsOptions.Value.ClientSecret);
+                formData.Add("client_assertion", _options.Value.ClientSecret);
                 formData.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer");
                 formData.Add("assertion", code);
                 formData.Add("grant_type", "urn:ietf:params:oauth:grant-type:jwt-bearer");
-                formData.Add("redirect_uri", _vstsOptions.Value.RedirectUri.AbsoluteUri);
+                formData.Add("redirect_uri", _options.Value.RedirectUri.AbsoluteUri);
 
-                var stsResponse = await _httpClient.PostAsync(_vstsOptions.Value.TokenService.AbsoluteUri, new FormUrlEncodedContent(formData));
+                var stsResponse = await _httpClient.PostAsync(_options.Value.TokenService.AbsoluteUri, new FormUrlEncodedContent(formData));
                 var stsResponseData = await stsResponse.Content.ReadAsStringAsync();
                 var stsPayload = JsonSerializer.Deserialize<StsDto>(stsResponseData);
                 var tokenHandler = new JwtSecurityTokenHandler();
