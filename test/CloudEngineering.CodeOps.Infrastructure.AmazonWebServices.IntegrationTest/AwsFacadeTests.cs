@@ -1,27 +1,26 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Xunit;
+using Xunit.Extensions.Ordering;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest
 {
-    public class AwsFacadeTests : IClassFixture<ServiceProviderFixture>
+    [Order(1)]
+    public class AwsFacadeTests : IClassFixture<AwsFacadeFixture>
     {
-        private readonly ServiceProviderFixture _fixture;
+        private readonly AwsFacadeFixture _fixture;
 
-        public AwsFacadeTests(ServiceProviderFixture fixture)
+        public AwsFacadeTests(AwsFacadeFixture fixture)
         {
             _fixture = fixture;
         }
 
-        [Fact]
-        public void CanRegisterDefaultProfile()
+        [Fact, Order(1)]
+        public void CanRegisterProfile()
         {
             //Arrange
-            var sut = _fixture.Provider.GetService<IAwsFacade>();
-            var options = _fixture.Provider.GetService<IOptions<AwsFacadeOptions>>();
-            var cmd = new RegisterProfileCommand(options.Value.Impersonate, options.Value.AccessKey, options.Value.SecretKey);
+            var sut = _fixture.Facade;
+            var cmd = new RegisterProfileCommand(_fixture.TestProfile, _fixture.Options.AccessKey, _fixture.Options.SecretKey);
 
             //Act
             var result = sut.Execute(cmd);
@@ -30,13 +29,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             Assert.False(result.IsFaulted);
         }
 
-        [Fact]
+        [Fact, Order(2)]
         public void CanUnregisterDefaultProfile()
         {
             //Arrange
-            var sut = _fixture.Provider.GetService<IAwsFacade>();
-            var options = _fixture.Provider.GetService<IOptions<AwsFacadeOptions>>();
-            var cmd = new UnregisterProfileCommand(options.Value.Impersonate.Name);
+            var sut = _fixture.Facade;
+            var cmd = new UnregisterProfileCommand(_fixture.TestProfile.Name);
 
             //Act
             var result = sut.Execute(cmd);

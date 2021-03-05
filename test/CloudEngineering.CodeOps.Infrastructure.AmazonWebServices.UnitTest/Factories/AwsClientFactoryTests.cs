@@ -15,12 +15,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.C
         {
             Region = "eu-central-1",
             AccessKey = "AKIAZLEEQTESQSMXVVX5",
-            SecretKey = "invalid",
-            ProfilesLocation = "C:\\temp\\aws",
-            Impersonate = new AwsProfile()
-            {
-                Name = "code-ops-test"
-            }
+            SecretKey = "invalid"
         });
 
         [Fact]

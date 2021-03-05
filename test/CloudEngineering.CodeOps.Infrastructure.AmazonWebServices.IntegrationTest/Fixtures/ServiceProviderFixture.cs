@@ -1,33 +1,26 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO;
-using System.Reflection;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures
 {
     public class ServiceProviderFixture : IDisposable
     {
+        private readonly ConfigurationFixture _configFixture = new ConfigurationFixture();
+
         public IServiceProvider Provider { get; init; }
 
         public ServiceProviderFixture()
         {
-            var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddUserSecrets(Assembly.GetExecutingAssembly())
-            .Build();
-
             var services = new ServiceCollection();
 
-            services.AddAmazonWebServices(config);
+            services.AddAmazonWebServices(_configFixture.Configuration);
 
             Provider = services.BuildServiceProvider();
         }
 
         public void Dispose()
         {
-
+            _configFixture.Dispose();
         }
     }
 }
