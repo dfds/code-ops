@@ -4,11 +4,11 @@ using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObje
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Converters
 {
-    public class GetParameterResponseToParameterDto : ITypeConverter<GetParameterResponse, ParameterDto>
+    public class GetParameterResponseToParameterDtoConverter : ITypeConverter<GetParameterResponse, ParameterDto>
     {
         private readonly IMapper _mapper;
 
-        public GetParameterResponseToParameterDto(IMapper mapper)
+        public GetParameterResponseToParameterDtoConverter(IMapper mapper)
         {
             _mapper = mapper;
         }

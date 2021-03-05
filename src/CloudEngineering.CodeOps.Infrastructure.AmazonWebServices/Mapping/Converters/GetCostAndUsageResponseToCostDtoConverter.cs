@@ -7,7 +7,7 @@ using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObje
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Converters
 {
-    public class GetCostAndUsageResponseToCostDto : ITypeConverter<GetCostAndUsageResponse, CostDto>
+    public class GetCostAndUsageResponseToCostDtoConverter : ITypeConverter<GetCostAndUsageResponse, CostDto>
     {
         public CostDto Convert(GetCostAndUsageResponse source, CostDto destination, ResolutionContext context)
         {

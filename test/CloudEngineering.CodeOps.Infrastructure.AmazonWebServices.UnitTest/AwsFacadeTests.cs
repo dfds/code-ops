@@ -1,25 +1,17 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Fixtures;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿using MediatR;
+using Moq;
 using Xunit;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest
 {
-    public class AwsFacadeTests : IClassFixture<ServiceProviderFixture>
+    public class AwsFacadeTests
     {
-        private readonly ServiceProviderFixture _fixture;
-
-        public AwsFacadeTests(ServiceProviderFixture fixture)
-        {
-            _fixture = fixture;
-        }
-
         [Fact]
         public void CanBeConstructed()
         {
             //Arrange
-            var sut = _fixture.Provider.GetService<IAwsFacade>();
+            var mockMediator = new Mock<IMediator>();
+            var sut = new AwsFacade(mockMediator.Object);
 
             //Act
             var hash = sut.GetHashCode();
@@ -27,36 +19,6 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest
             //Assert
             Assert.NotNull(sut);
             Assert.Equal(hash, sut.GetHashCode());
-        }
-
-        [Fact]
-        public void CanRegisterDefaultProfile()
-        {
-            //Arrange
-            var sut = _fixture.Provider.GetService<IAwsFacade>();
-            var options = _fixture.Provider.GetService<IOptions<AwsFacadeOptions>>();
-            var cmd = new RegisterProfileCommand(options.Value.Impersonate, options.Value.AccessKey, options.Value.SecretKey);
-
-            //Act
-            var result = sut.Execute(cmd);
-
-            //Assert
-            Assert.False(result.IsFaulted);
-        }
-
-        [Fact]
-        public void CanUnregisterDefaultProfile()
-        {
-            //Arrange
-            var sut = _fixture.Provider.GetService<IAwsFacade>();
-            var options = _fixture.Provider.GetService<IOptions<AwsFacadeOptions>>();
-            var cmd = new UnregisterProfileCommand(options.Value.Impersonate.Name);
-
-            //Act
-            var result = sut.Execute(cmd);
-
-            //Assert
-            Assert.False(result.IsFaulted);
         }
     }
 }

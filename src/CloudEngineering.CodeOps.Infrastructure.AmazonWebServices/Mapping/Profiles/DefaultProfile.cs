@@ -11,10 +11,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Prof
         public DefaultProfile()
         {
             CreateMap<GetCostAndUsageResponse, CostDto>()
-            .ConvertUsing<GetCostAndUsageResponseToCostDto>();
+            .ConvertUsing<GetCostAndUsageResponseToCostDtoConverter>();
 
             CreateMap<GetParameterResponse, ParameterDto>()
-            .ConvertUsing<GetParameterResponseToParameterDto>();
+            .ConvertUsing<GetParameterResponseToParameterDtoConverter>();
         }
     }
 }
