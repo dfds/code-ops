@@ -1,20 +1,21 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Xunit;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.DataTransferObjects.Cost
 {
-    public class CostDtoTests
+    public class ResultByTimeDtoTests
     {
         [Fact]
         public void CanBeConstructed()
         {
             //Arrange
-            CostDto sut;
+            ResultByTimeDto sut;
 
             //Act
-            sut = new CostDto();
+            sut = new ResultByTimeDto();
 
             //Assert
             Assert.NotNull(sut);
@@ -24,10 +25,13 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Dat
         public void CanBeSerialized()
         {
             //Arrange
-            var sut = new CostDto()
+            var sut = new ResultByTimeDto()
             {
-                DimensionValueAttributes = new List<DimensionValueAttributeDto>(),
-                ResultsByTime = new List<ResultByTimeDto>()
+                StartDate = DateTime.UtcNow,
+                EndDate = DateTime.UtcNow.AddDays(1),
+                Estimated = true,
+                Total = new Dictionary<string, MetricValueDto>(),
+                Groups = new List<GroupDto>()
             };
 
             //Act
@@ -41,10 +45,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Dat
         public void CanBeDeserialized()
         {
             //Arrange
-            CostDto sut;
+            GroupDto sut;
 
             //Act
-            sut = JsonSerializer.Deserialize<CostDto>("{\"dimensionValueAttributes\":[],\"resultByTime\":[]}");
+            sut = JsonSerializer.Deserialize<GroupDto>("{\"groups\":[],\"total\":[],\"startDate\":\"2021-03-05T10:41:41.2079256Z\",\"endDate\":\"2021-03-06T10:41:41.2400675Z\",\"estimated\": true}");
 
             //Assert
             Assert.NotNull(sut);

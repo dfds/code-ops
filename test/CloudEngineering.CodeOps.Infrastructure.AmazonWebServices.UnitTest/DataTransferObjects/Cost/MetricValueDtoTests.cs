@@ -1,20 +1,19 @@
 ﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
-using System.Collections.Generic;
 using System.Text.Json;
 using Xunit;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.DataTransferObjects.Cost
 {
-    public class CostDtoTests
+    public class MetricValueDtoTests
     {
         [Fact]
         public void CanBeConstructed()
         {
             //Arrange
-            CostDto sut;
+            MetricValueDto sut;
 
             //Act
-            sut = new CostDto();
+            sut = new MetricValueDto();
 
             //Assert
             Assert.NotNull(sut);
@@ -24,10 +23,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Dat
         public void CanBeSerialized()
         {
             //Arrange
-            var sut = new CostDto()
+            var sut = new MetricValueDto()
             {
-                DimensionValueAttributes = new List<DimensionValueAttributeDto>(),
-                ResultsByTime = new List<ResultByTimeDto>()
+                Amount = "10",
+                Unit = "kg"
             };
 
             //Act
@@ -41,10 +40,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Dat
         public void CanBeDeserialized()
         {
             //Arrange
-            CostDto sut;
+            MetricValueDto sut;
 
             //Act
-            sut = JsonSerializer.Deserialize<CostDto>("{\"dimensionValueAttributes\":[],\"resultByTime\":[]}");
+            sut = JsonSerializer.Deserialize<MetricValueDto>("{\"amount\": \"10\",\"unit\":\"kg\"}");
 
             //Assert
             Assert.NotNull(sut);

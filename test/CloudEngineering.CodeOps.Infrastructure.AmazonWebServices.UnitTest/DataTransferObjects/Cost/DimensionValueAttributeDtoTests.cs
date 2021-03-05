@@ -5,16 +5,16 @@ using Xunit;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.DataTransferObjects.Cost
 {
-    public class CostDtoTests
+    public class DimensionValueAttributeDtoTests
     {
         [Fact]
         public void CanBeConstructed()
         {
             //Arrange
-            CostDto sut;
+            DimensionValueAttributeDto sut;
 
             //Act
-            sut = new CostDto();
+            sut = new DimensionValueAttributeDto();
 
             //Assert
             Assert.NotNull(sut);
@@ -24,10 +24,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Dat
         public void CanBeSerialized()
         {
             //Arrange
-            var sut = new CostDto()
+            var sut = new DimensionValueAttributeDto()
             {
-                DimensionValueAttributes = new List<DimensionValueAttributeDto>(),
-                ResultsByTime = new List<ResultByTimeDto>()
+                Attributes = new Dictionary<string, string>(),
+                Value = "foo"
             };
 
             //Act
@@ -41,10 +41,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Dat
         public void CanBeDeserialized()
         {
             //Arrange
-            CostDto sut;
+            DimensionValueAttributeDto sut;
 
             //Act
-            sut = JsonSerializer.Deserialize<CostDto>("{\"dimensionValueAttributes\":[],\"resultByTime\":[]}");
+            sut = JsonSerializer.Deserialize<DimensionValueAttributeDto>("{\"attributes\":[],\"value\":\"foo\"}");
 
             //Assert
             Assert.NotNull(sut);
