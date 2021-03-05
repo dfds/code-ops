@@ -15,6 +15,15 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Prof
 
             CreateMap<GetParameterResponse, ParameterDto>()
             .ConvertUsing<GetParameterResponseToParameterDtoConverter>();
+
+            CreateMap<ParameterDto, PutParameterRequest>()
+            .ConvertUsing<ParameterDtoToPutParameterRequestConverter>();
+
+            CreateMap<PutParameterRequest, ParameterDto>()
+            .ConvertUsing<ParameterDtoToPutParameterRequestConverter>();
+            
+            CreateMap<Parameter, ParameterDto>()
+            .ConvertUsing<ParameterToParameterDtoConverter>();            
         }
     }
 }

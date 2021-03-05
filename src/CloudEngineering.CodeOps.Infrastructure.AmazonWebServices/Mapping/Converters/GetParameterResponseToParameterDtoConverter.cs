@@ -16,9 +16,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Conv
         public ParameterDto Convert(GetParameterResponse source, ParameterDto destination, ResolutionContext context)
         {
             destination ??= new ParameterDto();
-            destination = _mapper.Map(source.Parameter, destination);
 
-            destination.ParamType = source.Parameter.Type.Value;
+            destination = _mapper.Map(source.Parameter, destination);
 
             return destination;
         }

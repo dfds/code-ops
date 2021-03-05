@@ -18,9 +18,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransfer
         public string Name { get; set; }
 
         [JsonPropertyName("tags")]
-        public KeyValuePair<string, string>[] Tags { get; init; }
+        public KeyValuePair<string, string>[] Tags { get; set; }
 
         [JsonPropertyName("overwrite")]
-        public bool Overwrite { get; init; }
+        public bool Overwrite { get; set; }
     }
 }

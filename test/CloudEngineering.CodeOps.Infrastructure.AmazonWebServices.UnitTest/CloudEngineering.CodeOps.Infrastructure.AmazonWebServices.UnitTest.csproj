@@ -32,8 +32,4 @@
       <ProjectReference Include="..\..\src\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Commands\" />
-    </ItemGroup>
-
 </Project>

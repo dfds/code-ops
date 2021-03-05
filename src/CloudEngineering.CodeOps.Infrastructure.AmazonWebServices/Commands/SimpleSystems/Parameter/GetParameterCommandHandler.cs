@@ -4,7 +4,6 @@ using Amazon.SimpleSystemsManagement.Model;
 using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,11 +31,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 
             try
             {
-                result = _mapper.Map<ParameterDto>(await client.GetParameterAsync(request, cancellationToken));
+                var response = await client.GetParameterAsync(request, cancellationToken);
+                result = _mapper.Map<GetParameterResponse, ParameterDto>(response);
             }
             catch (AmazonServiceException e)
             {
-                throw new Exception(e.Message, e);
+                throw new AwsFacadeException(e.Message, e);
             }
 
             return result;
