@@ -33,9 +33,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Factories\" />
       <Folder Include="Commands\" />
-      <Folder Include="DataTransferObjects\" />
+      <Folder Include="DataTransferObjects\Cost\" />
     </ItemGroup>
 
 </Project>
