@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Policy
 {
     public sealed class DeletePolicyCommand : AwsCommand<Task>
     {

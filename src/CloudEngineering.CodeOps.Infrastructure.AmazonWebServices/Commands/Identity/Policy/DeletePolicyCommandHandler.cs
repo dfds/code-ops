@@ -2,7 +2,6 @@
 using Amazon.IdentityManagement.Model;
 using Amazon.Runtime;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

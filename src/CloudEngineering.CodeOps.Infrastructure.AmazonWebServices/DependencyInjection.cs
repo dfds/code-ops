@@ -1,9 +1,11 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Commands;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cost;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Policy;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Role;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.SimpleSystems.Parameter;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
+using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Identity.Policy;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Identity.Role;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
@@ -62,6 +64,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
             services.AddTransient<IRequestHandler<GetMonthlyTotalCostCommand, IEnumerable<CostDto>>, GetMonthlyTotalCostCommandHandler>();
 
             //AmazonIdentityManagementServiceClient
+            services.AddTransient<ICommandHandler<CreatePolicyCommand, ManagedPolicyDto>, CreatePolicyCommandHandler>();
+            services.AddTransient<IRequestHandler<CreatePolicyCommand, ManagedPolicyDto>, CreatePolicyCommandHandler>();
+            services.AddTransient<ICommandHandler<DeletePolicyCommand, Task>, DeletePolicyCommandHandler>();
+            services.AddTransient<IRequestHandler<DeletePolicyCommand, Task>, DeletePolicyCommandHandler>();
+
             services.AddTransient<ICommandHandler<CreateRoleCommand, RoleDto>, CreateRoleCommandHandler>();
             services.AddTransient<IRequestHandler<CreateRoleCommand, RoleDto>, CreateRoleCommandHandler>();
             services.AddTransient<ICommandHandler<DeleteRoleCommand, Task>, DeleteRoleCommandHandler>();

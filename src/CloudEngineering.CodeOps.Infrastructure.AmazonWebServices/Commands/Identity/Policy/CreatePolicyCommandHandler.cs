@@ -32,7 +32,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 
             try
             {
-                result = _mapper.Map<ManagedPolicyDto>((await client.CreatePolicyAsync(request, cancellationToken)).Policy);
+                result = _mapper.Map<ManagedPolicy, ManagedPolicyDto>((await client.CreatePolicyAsync(request, cancellationToken)).Policy);
             }
             catch (AmazonServiceException e)
             {
