@@ -11,8 +11,9 @@ namespace CloudEngineering.CodeOps.Security.Policies.Policies
         private readonly string[] _authenticationSchemas = { CookieAuthenticationDefaults.AuthenticationScheme };
         private readonly Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider _backupPolicyProvider;
 
-        public DefaultAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options)
+        public DefaultAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options, string[] authenticationSchemas = default)
         {
+            _authenticationSchemas = authenticationSchemas ?? _authenticationSchemas;
             _backupPolicyProvider = new Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider(options);
         }
 
