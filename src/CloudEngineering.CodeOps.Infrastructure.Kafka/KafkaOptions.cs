@@ -14,6 +14,6 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
         public int StatisticsIntervalMs { get; set; } = 5000;
 
-        public int CommitPeriod { get; set; } = 5;
+        public int CommitPeriod { get; set; } = 1;
     }
 }

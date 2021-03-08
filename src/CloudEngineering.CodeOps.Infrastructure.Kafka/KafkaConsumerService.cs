@@ -74,8 +74,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
                         await _consumptionStrategy.Apply(consumeResult, cancellationToken);
                         
-                       // if (consumeResult.Offset % _options.Value.CommitPeriod == 0)
-                       // {
+                        
+                        if (consumeResult.Offset % _options.Value.CommitPeriod == 0)
+                        {
                             try
                             {
                                 consumer.Commit(consumeResult);
@@ -84,7 +85,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
                             {
                                 _logger.LogError($"Commit error: {e.Error.Reason}", e);
                             }
-                       // }
+                        }
                     }
                     catch (ConsumeException e)
                     {
