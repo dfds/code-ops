@@ -1,10 +1,10 @@
 ﻿using Amazon.Runtime;
 using Amazon.SimpleSystemsManagement;
 using Amazon.SimpleSystemsManagement.Model;
-using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.SimpleSystems.Parameter;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,24 +12,41 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
 {
     public sealed class AddOrUpdateParameterCommandHandler : AwsCommandHandler<AddOrUpdateParameterCommand, ParameterDto>
     {
-        private readonly IMapper _mapper;
-
-        public AddOrUpdateParameterCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper) : base(awsClientFactory)
+        public AddOrUpdateParameterCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         {
-            _mapper = mapper;
         }
 
         public async override Task<ParameterDto> Handle(AddOrUpdateParameterCommand command, CancellationToken cancellationToken = default)
         {
             using var client = _awsClientFactory.Create<AmazonSimpleSystemsManagementClient>(command.AssumeProfile);
                         
-            ParameterDto result;
+            ParameterDto result = null;
 
-            var request = _mapper.Map<PutParameterRequest>(command.Parameter);
+            var request = new PutParameterRequest()
+            {
+                Name = command.Parameter.Name,
+                Value = command.Parameter.Value,
+                Type = command.Parameter.ParamType,
+                Overwrite = command.Parameter.Overwrite,
+                Tags = command.Parameter.Tags?.Select(kv => new Tag { Key = kv.Key, Value = kv.Value }).ToList()
+            };
 
             try
-            {
-                result = _mapper.Map<ParameterDto>(await client.PutParameterAsync(request, cancellationToken));
+            {                
+                var response = await client.PutParameterAsync(request, cancellationToken);
+
+                if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    result = new ParameterDto
+                    {
+                        Name = command.Parameter.Name,
+                        Overwrite = command.Parameter.Overwrite,
+                        Value = command.Parameter.Value,
+                        Version = command.Parameter.Version,
+                        Tags = command.Parameter.Tags,
+                        ParamType = command.Parameter.ParamType
+                    };
+                }
             }
             catch (AmazonServiceException e)
             {

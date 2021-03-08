@@ -36,7 +36,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Ide
 
             try
             {
-                result = _mapper.Map<RoleDto>((await client.CreateRoleAsync(request, cancellationToken)).Role);
+                result = _mapper.Map<Amazon.IdentityManagement.Model.Role, RoleDto>((await client.CreateRoleAsync(request, cancellationToken)).Role);
             }
             catch (AmazonServiceException e)
             {

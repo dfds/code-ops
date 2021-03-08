@@ -32,7 +32,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
             try
             {
                 var response = await client.GetParameterAsync(request, cancellationToken);
-                result = _mapper.Map<GetParameterResponse, ParameterDto>(response);
+
+                result = _mapper.Map<Amazon.SimpleSystemsManagement.Model.Parameter, ParameterDto>(response.Parameter);
             }
             catch (AmazonServiceException e)
             {

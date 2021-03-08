@@ -4,14 +4,13 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Commands.Cost
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Commands.Identity.Policy
 {
-    public class CreatePolicyCommandTests : IClassFixture<AwsFacadeFixture>
+    public class CreateAndDeletePolicyCommandTests : IClassFixture<AwsFacadeFixture>
     {
         private readonly AwsFacadeFixture _fixture;
-        private string _policyArn = string.Empty;
 
-        public CreatePolicyCommandTests(AwsFacadeFixture fixture)
+        public CreateAndDeletePolicyCommandTests(AwsFacadeFixture fixture)
         {
             _fixture = fixture;
         }

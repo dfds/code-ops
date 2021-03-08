@@ -14,11 +14,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
 {
     public sealed class GetMonthlyTotalCostCommandHandler : AwsCommandHandler<GetMonthlyTotalCostCommand, IEnumerable<CostDto>>
     {
-        private readonly IMapper _mapper;
-
-        public GetMonthlyTotalCostCommandHandler(IAwsClientFactory awsClientFactory, IMapper mapper) : base(awsClientFactory)
+        public GetMonthlyTotalCostCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         {
-            _mapper = mapper;
         }
 
         public async override Task<IEnumerable<CostDto>> Handle(GetMonthlyTotalCostCommand command, CancellationToken cancellationToken = default)
@@ -65,7 +62,37 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
 
                     resp = await client.GetCostAndUsageAsync(request, cancellationToken);
 
-                    result.Add(_mapper.Map<CostDto>(resp));
+                    var dto = new CostDto
+                    {
+                        DimensionValueAttributes = resp.DimensionValueAttributes?.Select(o => new DimensionValueAttributeDto
+                        {
+                            Attributes = o.Attributes,
+                            Value = o.Value
+                        }),
+
+                        ResultsByTime = resp.ResultsByTime?.Select(o => new ResultByTimeDto
+                        {
+                            Total = o.Total?.Select(kvp => new KeyValuePair<string, MetricValueDto>(kvp.Key, new MetricValueDto
+                            {
+                                Amount = kvp.Value.Amount,
+                                Unit = kvp.Value.Unit
+                            })),
+                            StartDate = DateTime.Parse(o.TimePeriod.Start),
+                            EndDate = DateTime.Parse(o.TimePeriod.End),
+                            Estimated = o.Estimated,
+                            Groups = o.Groups?.Select(g => new GroupDto
+                            {
+                                Keys = g.Keys?.AsEnumerable(),
+                                Metrics = g.Metrics?.Select(m => new KeyValuePair<string, MetricValueDto>(m.Key, new MetricValueDto
+                                {
+                                    Amount = m.Value.Amount,
+                                    Unit = m.Value.Unit
+                                }))
+                            })
+                        })
+                    };
+
+                    result.Add(dto);
                 }
                 while (resp.NextPageToken != null);
             }
