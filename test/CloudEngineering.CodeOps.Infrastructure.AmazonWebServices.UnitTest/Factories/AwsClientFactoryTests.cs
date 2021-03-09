@@ -1,13 +1,11 @@
 ﻿using Amazon.CostExplorer;
 using Amazon.IdentityManagement;
 using Amazon.SimpleSystemsManagement;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using Microsoft.Extensions.Options;
 using Xunit;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.Converters
+namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Factories
 {
     public class AwsClientFactoryTests
     {
