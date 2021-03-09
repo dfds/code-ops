@@ -10,12 +10,16 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
 
         public ConfigurationFixture()
         {
+            Console.WriteLine($"ConfigFixture base dir: {AppDomain.CurrentDomain.BaseDirectory}");
+
             var builder = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddUserSecrets(Assembly.GetExecutingAssembly());
 
             Configuration = builder.Build();
+
+            Console.WriteLine($"AwsFacade section: {Configuration.GetSection("AwsFacade").Value}");
         }
 
         public void Dispose()
