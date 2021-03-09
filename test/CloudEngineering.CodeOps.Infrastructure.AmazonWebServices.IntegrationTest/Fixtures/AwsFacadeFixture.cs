@@ -36,6 +36,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
 
         public AwsFacadeFixture()
         {
+            Console.WriteLine("access key: " + Options.AccessKey);
+            Console.WriteLine("SecretKey key: " + Options.SecretKey);
+
             Task.WaitAll(Facade.Execute(new RegisterProfileCommand(TestProfile, Options.AccessKey, Options.SecretKey)));
         }
 
