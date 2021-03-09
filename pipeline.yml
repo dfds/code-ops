@@ -17,7 +17,6 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  AWSFACADE__SECRETKEY: $(AwsFacade__SecretKey)
 
 steps:    
 - task: DotNetCoreCLI@2
@@ -35,6 +34,8 @@ steps:
   inputs:
     command: 'test'
     arguments: '--no-build'
+  env:
+    AwsFacade__SecretKey: $(AwsFacade__SecretKey)
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
