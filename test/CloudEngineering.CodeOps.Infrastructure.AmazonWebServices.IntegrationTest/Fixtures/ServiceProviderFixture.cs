@@ -22,6 +22,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             var options = Provider.GetService<IOptions<AwsFacadeOptions>>();
 
             Console.WriteLine($"options: {JsonSerializer.Serialize(options)}");
+            Console.WriteLine($"env var: {Environment.GetEnvironmentVariable("AWSFACADE__SECRETKEY")}");
         }
 
         public void Dispose()
