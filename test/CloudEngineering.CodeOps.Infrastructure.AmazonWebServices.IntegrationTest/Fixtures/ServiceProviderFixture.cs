@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
+using System.Text.Json;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures
 {
@@ -16,6 +18,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             services.AddAmazonWebServices(_configFixture.Configuration);
 
             Provider = services.BuildServiceProvider();
+
+            var options = Provider.GetService<IOptions<AwsFacadeOptions>>();
+
+            Console.WriteLine($"options: {JsonSerializer.Serialize(options)}");
         }
 
         public void Dispose()
