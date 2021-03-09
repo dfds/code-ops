@@ -8,7 +8,7 @@ trigger:
     include:
     - master
     exclude:
-    - '*'
+    - issue-206
 
 pool:
   vmImage: 'windows-latest'
