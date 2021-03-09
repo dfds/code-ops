@@ -11,6 +11,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 
         public AwsCredentialResolver(IOptions<AwsFacadeOptions> options)
         {
+            Console.WriteLine($"ctor.SecretKey: {options.Value.SecretKey}");
             Console.WriteLine($"ctor.ProfilesLocation: {options.Value.ProfilesLocation}");
             _credentialProfileStoreChain = new CredentialProfileStoreChain(options.Value.ProfilesLocation);
         }
