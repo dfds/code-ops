@@ -30,6 +30,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.C
             Assert.NotNull(result);
             Assert.Equal(result, mockAggregate.Object);
             Assert.Equal(result, result2);
+            
+            Mock.VerifyAll(mockMapper, mockAggregate);
         }
     }
 }
