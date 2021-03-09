@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Build
 {

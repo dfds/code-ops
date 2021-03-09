@@ -2,8 +2,8 @@
 
 namespace CloudEngineering.CodeOps.Abstractions.Aggregates
 {
-	public interface IAggregateRoot : IEntity
-	{
+    public interface IAggregateRoot : IEntity
+    {
 
-	}
+    }
 }

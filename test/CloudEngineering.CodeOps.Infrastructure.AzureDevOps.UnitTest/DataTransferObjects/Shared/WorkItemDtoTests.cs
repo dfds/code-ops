@@ -41,7 +41,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.DataTrans
         {
             //Arrange
             WorkItemDto sut;
-            
+
             //Act
             sut = JsonSerializer.Deserialize<WorkItemDto>("{\"id\":\"id\",\"url\":\"url\"}");
 

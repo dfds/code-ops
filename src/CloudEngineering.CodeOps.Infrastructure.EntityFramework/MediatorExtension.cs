@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using CloudEngineering.CodeOps.Abstractions.Entities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq;
 using System.Threading.Tasks;
-using CloudEngineering.CodeOps.Abstractions.Entities;
 
 namespace CloudEngineering.CodeOps.Infrastructure.EntityFramework
 {

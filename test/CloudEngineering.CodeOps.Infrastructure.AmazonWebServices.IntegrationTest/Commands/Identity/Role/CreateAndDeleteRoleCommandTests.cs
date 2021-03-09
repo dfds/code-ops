@@ -16,7 +16,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         }
 
         [Fact]
-        public async Task CanCreateAndDeleteRole() 
+        public async Task CanCreateAndDeleteRole()
         {
             //Arrange
             var facade = _fixture.Facade;

@@ -1,8 +1,7 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
 using System;
 using System.Net.Http;
 using System.Text.Json;
-using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Project
 {

@@ -25,7 +25,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest
             {
                 ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientAccessToken"),
                 Issuer = _fixture.Configuration.GetValue<Uri>("AdoClient:Issuer"),
-                RedirectUri = _fixture.Configuration.GetValue<Uri>("AdoClient:RedirectUri")                
+                RedirectUri = _fixture.Configuration.GetValue<Uri>("AdoClient:RedirectUri")
             };
 
             var sut = new AdoClient(Options.Create(options));

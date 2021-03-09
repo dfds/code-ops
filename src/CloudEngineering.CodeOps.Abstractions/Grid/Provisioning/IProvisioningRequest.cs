@@ -2,7 +2,7 @@
 
 namespace CloudEngineering.CodeOps.Abstractions.Grid.Provisioning
 {
-	public interface IProvisioningRequest : ICommand<IProvisioningResponse>
-	{
-	}
+    public interface IProvisioningRequest : ICommand<IProvisioningResponse>
+    {
+    }
 }

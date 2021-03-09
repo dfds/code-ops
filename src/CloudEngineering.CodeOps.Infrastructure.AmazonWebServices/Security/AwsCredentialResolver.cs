@@ -1,7 +1,6 @@
 ﻿using Amazon.Runtime.CredentialManagement;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using Microsoft.Extensions.Options;
-using System;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
@@ -31,7 +30,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
                 throw new AwsFacadeException($"Failed to retrieve credentials for profile: {profile?.Name}");
             }
 
-            return (AwsCredentials)credentialsHandle.GetCredentials(); 
+            return (AwsCredentials)credentialsHandle.GetCredentials();
         }
     }
 }

@@ -11,34 +11,32 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
     {
         private readonly ServiceProviderFixture _serviceFixture = new ServiceProviderFixture();
 
-        public IAwsFacade Facade 
+        public IAwsFacade Facade
         {
-            get 
+            get
             {
                 return _serviceFixture.Provider.GetService<IAwsFacade>();
-            }        
+            }
         }
 
-        internal IAwsProfile TestProfile { 
-            get 
+        internal IAwsProfile TestProfile
+        {
+            get
             {
                 return Options.Impersonate;
-            } 
+            }
         }
 
-        internal AwsFacadeOptions Options 
+        internal AwsFacadeOptions Options
         {
-            get 
+            get
             {
                 return _serviceFixture.Provider.GetService<IOptions<AwsFacadeOptions>>().Value;
-            }        
+            }
         }
 
         public AwsFacadeFixture()
         {
-            Console.WriteLine("access key: " + Options.AccessKey);
-            Console.WriteLine("SecretKey key: " + Options.SecretKey);
-
             Task.WaitAll(Facade.Execute(new RegisterProfileCommand(TestProfile, Options.AccessKey, Options.SecretKey)));
         }
 

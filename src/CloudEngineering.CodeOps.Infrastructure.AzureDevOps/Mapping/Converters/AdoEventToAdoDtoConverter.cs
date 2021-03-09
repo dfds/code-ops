@@ -11,7 +11,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
     {
         private readonly IAdoClient _vstsClient;
 
-        public AdoEventToAdoDtoConverter(IAdoClient vstsClient) 
+        public AdoEventToAdoDtoConverter(IAdoClient vstsClient)
         {
             _vstsClient = vstsClient;
         }
@@ -20,7 +20,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
         {
             Guid? projectId;
 
-            switch(source.EventType)
+            switch (source.EventType)
             {
                 case BuildCompletedEvent.EventIdentifier:
                     var buildId = source.Resource?.GetProperty("id").GetInt32();
@@ -28,7 +28,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Mapping.Converters
                     var fetchUpdatedBuildDtoTask = _vstsClient.GetBuild(projectId.Value.ToString(), buildId.Value);
 
                     fetchUpdatedBuildDtoTask.Wait();
-                    
+
                     return fetchUpdatedBuildDtoTask.Result;
 
                 case ReleaseCreatedEvent.EventIdentifier:

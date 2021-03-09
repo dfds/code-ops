@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Role
 {
     public sealed class UpdateRoleCommandHandler : AwsCommandHandler<UpdateRoleCommand, Task>
-   {
+    {
         public UpdateRoleCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         { }
 

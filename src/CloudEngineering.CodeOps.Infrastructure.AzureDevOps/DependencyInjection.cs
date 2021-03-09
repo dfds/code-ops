@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Microsoft.Extensions.Configuration;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps
 {

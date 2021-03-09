@@ -1,7 +1,6 @@
 ﻿using Amazon.CostExplorer;
 using Amazon.CostExplorer.Model;
 using Amazon.Runtime;
-using AutoMapper;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransferObjects.Cost;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories;
 using System;

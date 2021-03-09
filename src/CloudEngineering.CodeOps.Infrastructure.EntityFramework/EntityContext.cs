@@ -34,7 +34,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.EntityFramework
                 ModelConfigurationAssembly = Assembly.GetCallingAssembly();
             }
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             if (ModelConfigurationAssembly == null) return;
@@ -53,9 +53,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.EntityFramework
                     configurationCtorArgTypes.Add(viewData.GetType());
                     configurationCtorArgs.Add(viewData);
                 }
-                
+
                 var configurationCtor = configurationType.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, configurationCtorArgTypes.ToArray(), null);
-                
+
                 dynamic configuration = configurationCtor?.Invoke(configurationCtorArgs.ToArray());
 
                 if (configuration == null)
@@ -100,7 +100,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.EntityFramework
                 if (Validator.TryValidateObject(entity, validationContext, results, true)) continue;
 
                 var messages = results.Select(r => r.ErrorMessage).ToList().Aggregate((message, nextMessage) => message + ", " + nextMessage);
-                    
+
                 throw new EntityContextException($"Unable to save changes for {entity.GetType().FullName} due to error(s): {messages}");
             }
 

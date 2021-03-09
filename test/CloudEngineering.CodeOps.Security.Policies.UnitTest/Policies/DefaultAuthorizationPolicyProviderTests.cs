@@ -10,8 +10,8 @@ namespace CloudEngineering.CodeOps.Security.Policies.Policies
     public class DefaultAuthorizationPolicyProviderTests
     {
         [Fact]
-        public async Task DefaultAuthorizationPolicyProviderCanResolvePolicies() 
-        { 
+        public async Task DefaultAuthorizationPolicyProviderCanResolvePolicies()
+        {
             //Arrange
             var options = Options.Create(new AuthorizationOptions());
             var sut = new DefaultAuthorizationPolicyProvider(options);

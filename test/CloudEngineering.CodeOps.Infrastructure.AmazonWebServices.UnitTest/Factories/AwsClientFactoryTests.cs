@@ -28,7 +28,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Fac
             //Assert
             Assert.NotNull(sut);
             Assert.NotNull(result);
-            Assert.Equal(result.Config.RegionEndpoint.SystemName, _options.Value.Region);            
+            Assert.Equal(result.Config.RegionEndpoint.SystemName, _options.Value.Region);
         }
 
         [Fact]

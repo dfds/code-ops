@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Identity.Policy
 {
     public sealed class DeletePolicyCommandHandler : AwsCommandHandler<DeletePolicyCommand, Task>
-   {
+    {
         public DeletePolicyCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         { }
 

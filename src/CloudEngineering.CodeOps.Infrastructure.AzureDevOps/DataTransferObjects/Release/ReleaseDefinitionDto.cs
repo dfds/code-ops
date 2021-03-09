@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Project;
 using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Shared;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release
 {

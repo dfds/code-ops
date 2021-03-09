@@ -17,7 +17,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         }
 
         [Fact]
-        public async Task CanGetMonthlyTotalCostForAll() 
+        public async Task CanGetMonthlyTotalCostForAll()
         {
             //Arrange
             var facade = _fixture.Facade;
