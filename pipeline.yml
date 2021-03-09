@@ -26,6 +26,12 @@ steps:
     command: 'build'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    arguments: 'no-build'
+
+- task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
     command: 'pack'
