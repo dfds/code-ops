@@ -12,8 +12,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Fac
         private readonly IOptions<AwsFacadeOptions> _options = Options.Create(new AwsFacadeOptions()
         {
             Region = "eu-central-1",
-            AccessKey = "AKIAZLEEQTESQSMXVVX5",
-            SecretKey = "invalid"
+            AccessKey = "unit_test_access_key",
+            SecretKey = "unit_test_secret_key"
         });
 
         [Fact]

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
 using System.Reflection;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures
@@ -11,10 +10,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
 
         public ConfigurationFixture()
         {
-            Console.WriteLine($"Loading Config Fixture with root dir of: {Directory.GetCurrentDirectory()}");
-
             var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddUserSecrets(Assembly.GetExecutingAssembly());
 
