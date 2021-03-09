@@ -1,6 +1,7 @@
 ﻿using Amazon.Runtime.CredentialManagement;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
@@ -10,6 +11,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 
         public AwsCredentialResolver(IOptions<AwsFacadeOptions> options)
         {
+            Console.WriteLine(options.Value.Region);
+            Console.WriteLine(options.Value.AccessKey);
+            Console.WriteLine(options.Value.SecretKey);
+            Console.WriteLine(options.Value.ProfilesLocation);
+            Console.WriteLine(options.Value.Impersonate.Name);
+
             _credentialProfileStoreChain = new CredentialProfileStoreChain(options.Value.ProfilesLocation);
         }
 
