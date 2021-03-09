@@ -11,6 +11,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
 
         public ConfigurationFixture()
         {
+            Console.WriteLine($"Loading Config Fixture with root dir of: {Directory.GetCurrentDirectory()}");
+
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
