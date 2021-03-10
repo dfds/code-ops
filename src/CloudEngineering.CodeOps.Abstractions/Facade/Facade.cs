@@ -1,6 +1,6 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Commands;
 using MediatR;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,20 +9,19 @@ namespace CloudEngineering.CodeOps.Abstractions.Facade
 {
     public abstract class Facade : IFacade
     {
-        protected readonly IMediator _mediator;
-        protected readonly ILogger<Facade> _logger;
+        protected readonly IServiceScopeFactory _scopeFactory;
 
-        protected Facade(IMediator mediator, ILogger<Facade> logger = default)
+        protected Facade(IServiceScopeFactory scopeFactory)
         {
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-            _logger = logger;
+            _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
         }
 
         public virtual async Task<T> Execute<T>(ICommand<T> command, CancellationToken cancellationToken = default)
         {
-            _logger?.LogInformation($"Processing {command.GetType().FullName}");
+            using var scope = _scopeFactory.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-            return await _mediator.Send(command, cancellationToken);
+            return await mediator.Send(command, cancellationToken);
         }
     }
 }

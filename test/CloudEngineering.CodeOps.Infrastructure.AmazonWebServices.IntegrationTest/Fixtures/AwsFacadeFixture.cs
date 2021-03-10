@@ -32,13 +32,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         {
             Facade = _serviceFixture.Provider.GetService<IAwsFacade>();
             Options = _serviceFixture.Provider.GetService<IOptions<AwsFacadeOptions>>().Value;
-
-            Facade.Connect();
         }
 
         public void Dispose()
         {
-            Facade.Disconnect();
+            Facade.Dispose();
 
             _serviceFixture.Dispose();
         }
