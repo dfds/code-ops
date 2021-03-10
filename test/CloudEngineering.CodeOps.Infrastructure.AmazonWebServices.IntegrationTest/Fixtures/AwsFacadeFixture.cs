@@ -28,7 +28,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             get; set;
         }
 
-        public AwsFacadeFixture() 
+        public AwsFacadeFixture()
         {
             Facade = _serviceFixture.Provider.GetService<IAwsFacade>();
             Options = _serviceFixture.Provider.GetService<IOptions<AwsFacadeOptions>>().Value;

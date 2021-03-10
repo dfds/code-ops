@@ -35,7 +35,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         {
             //Arrange
             var facade = _fixture.Facade;
-            var command = new GetMonthlyTotalCostCommand() 
+            var command = new GetMonthlyTotalCostCommand()
             {
                 AccountIdentifier = "642375522597"
             };
