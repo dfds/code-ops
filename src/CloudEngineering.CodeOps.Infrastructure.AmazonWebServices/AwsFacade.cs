@@ -31,7 +31,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
             {
                 if (disposing)
                 {
-                    Task.WaitAll(Execute(new RegisterProfileCommand(_options.Value.Impersonate, _options.Value.AccessKey, _options.Value.SecretKey)));
+                    Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
                 }
 
                 _disposedValue = true;
