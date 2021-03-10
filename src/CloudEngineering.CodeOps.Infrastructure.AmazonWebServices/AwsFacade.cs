@@ -37,7 +37,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
             }
 
             System.Console.WriteLine("Disposing awsfacade");
-            _logger.LogInformation("AwsFacade disposed");
+            _logger?.LogInformation("AwsFacade disposed");
 
             _disposed = true;
         }
