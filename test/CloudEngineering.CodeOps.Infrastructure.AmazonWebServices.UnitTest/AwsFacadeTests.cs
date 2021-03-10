@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
+using MediatR;
+using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
@@ -10,8 +12,16 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest
         public void CanBeConstructed()
         {
             //Arrange
+            var fakeOptions = new AwsFacadeOptions()
+            {
+                Impersonate = new AwsProfile() { Name = "testing" },
+                AccessKey = "testing_access_key",
+                SecretKey = "testing_secret_key",
+                ProfilesLocation = ".\\awsfacade"
+            };
+
             var mockMediator = new Mock<IMediator>();
-            var sut = new AwsFacade(mockMediator.Object);
+            using var sut = new AwsFacade(Options.Create(fakeOptions), mockMediator.Object);
 
             //Act
             var hash = sut.GetHashCode();

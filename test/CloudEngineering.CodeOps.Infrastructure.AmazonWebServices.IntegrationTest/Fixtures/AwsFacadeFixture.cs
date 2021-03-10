@@ -1,9 +1,7 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile;
-using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
+﻿using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
-using System.Threading.Tasks;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures
 {
@@ -35,15 +33,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             }
         }
 
-        public AwsFacadeFixture()
-        {
-            Task.WaitAll(Facade.Execute(new RegisterProfileCommand(TestProfile, Options.AccessKey, Options.SecretKey)));
-        }
-
         public void Dispose()
         {
-            Task.WaitAll(Facade.Execute(new UnregisterProfileCommand(TestProfile.Name)));
-
             _serviceFixture.Dispose();
         }
     }

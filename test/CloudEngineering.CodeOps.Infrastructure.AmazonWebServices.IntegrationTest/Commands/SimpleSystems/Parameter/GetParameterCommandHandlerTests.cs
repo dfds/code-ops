@@ -20,7 +20,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public async Task GetParameterCommandWithInvalidNameThrowsException()
         {
             //Arrange
-            var facade = _fixture.Facade;
+            using var facade = _fixture.Facade;
             var command = new GetParameterCommand("my-param");
 
             //Act
@@ -34,7 +34,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public async Task GetParameterCommandWithValidName()
         {
             //Arrange
-            var facade = _fixture.Facade;
+            using var facade = _fixture.Facade;
             var command = new GetParameterCommand("/managed/deploy/ad-creds");
 
             //Act

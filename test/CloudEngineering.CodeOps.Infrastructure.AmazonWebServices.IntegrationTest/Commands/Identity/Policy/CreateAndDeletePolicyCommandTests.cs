@@ -19,7 +19,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public async Task CanCreateAndDeletePolicy()
         {
             //Arrange
-            var facade = _fixture.Facade;
+            using var facade = _fixture.Facade;
 
             var policyName = Guid.NewGuid().ToString();
             var command = new CreatePolicyCommand(policyName, "{\"Version\": \"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"s3: ListAllMyBuckets\",\"Resource\":\"arn:aws:s3:::*\"}]}");

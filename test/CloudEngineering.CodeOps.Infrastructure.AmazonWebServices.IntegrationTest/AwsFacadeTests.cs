@@ -19,7 +19,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public void CanRegisterProfile()
         {
             //Arrange
-            var sut = _fixture.Facade;
+            using var sut = _fixture.Facade;
             var cmd = new RegisterProfileCommand(_fixture.TestProfile, _fixture.Options.AccessKey, _fixture.Options.SecretKey);
 
             //Act
@@ -33,7 +33,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public void CanUnregisterDefaultProfile()
         {
             //Arrange
-            var sut = _fixture.Facade;
+            using var sut = _fixture.Facade;
             var cmd = new UnregisterProfileCommand(_fixture.TestProfile.Name);
 
             //Act
