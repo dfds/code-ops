@@ -11,6 +11,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Cos
 
         public GetMonthlyTotalCostCommand(string accountIdentifier = default)
         {
+            // test comment; will be removed later
             AccountIdentifier = accountIdentifier;
         }
     }
