@@ -7,9 +7,9 @@
 trigger:
   branches:
     include:
-    - master
-    exclude:
     - issue-206
+    exclude:
+    - master
 
 pool:
   vmImage: 'windows-latest'
