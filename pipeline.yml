@@ -4,15 +4,23 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
-- issue-206
+  branches:
+    include:
+    - master
+    exclude:
+    - issue-206
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+- group: Developer-Automation
+- name: 'solution'
+  value: '**/*.sln'
+- name: 'buildPlatform'
+  value: 'Any CPU'
+- name: 'buildConfiguration'
+  value: 'Release'
 
 steps:    
 - task: DotNetCoreCLI@2
@@ -29,6 +37,10 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: 'test'
+    arguments: '--no-build'
+  env:
+    AwsFacade__SecretKey: $(AwsFacade__SecretKey)
+    AdoClient__ClientAccessToken: $(System.AccessToken)
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'

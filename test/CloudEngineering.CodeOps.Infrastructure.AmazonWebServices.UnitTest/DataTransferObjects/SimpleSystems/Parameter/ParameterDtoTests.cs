@@ -47,7 +47,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Ide
         {
             //Arrange
             ParameterDto sut;
-            
+
             //Act
             sut = JsonSerializer.Deserialize<ParameterDto>("{\"version\":1,\"value\":\"value\",\"paramType\":\"type\",\"name\":\"name\",\"tags\":[],\"overwrite\":true}");
 

@@ -42,7 +42,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.DataTrans
         {
             //Arrange
             OperationDto sut;
-            
+
             //Act
             sut = JsonSerializer.Deserialize<OperationDto>("{\"id\":\"id\",\"pluginId\":\"pluginId\",\"url\":\"url\"}");
 

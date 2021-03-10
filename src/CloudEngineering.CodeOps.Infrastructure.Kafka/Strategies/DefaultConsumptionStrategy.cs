@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using CloudEngineering.CodeOps.Abstractions.Facade;
 using Confluent.Kafka;
 using System.Threading;
 using System.Threading.Tasks;
-using CloudEngineering.CodeOps.Abstractions.Facade;
 
 namespace CloudEngineering.CodeOps.Infrastructure.Kafka.Strategies
 {

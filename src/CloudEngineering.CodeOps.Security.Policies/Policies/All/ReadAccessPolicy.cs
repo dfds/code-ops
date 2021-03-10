@@ -8,7 +8,7 @@ namespace CloudEngineering.CodeOps.Security.Policies.Policies.All
     {
         public const string PolicyName = "dfds.all.read";
 
-        public ReadAccessPolicy(IEnumerable<string> authenticationSchemes) : base(new IAuthorizationRequirement[]{new ReadAccessRequirement()}, authenticationSchemes)
+        public ReadAccessPolicy(IEnumerable<string> authenticationSchemes) : base(new IAuthorizationRequirement[] { new ReadAccessRequirement() }, authenticationSchemes)
         {
         }
     }

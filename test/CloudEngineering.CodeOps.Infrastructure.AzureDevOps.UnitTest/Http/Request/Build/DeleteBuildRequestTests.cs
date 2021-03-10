@@ -19,7 +19,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Http.Requ
             Assert.NotNull(sut);
             Assert.Equal("6.1-preview.6", sut.ApiVersion);
             Assert.Equal(HttpMethod.Delete, sut.Method);
-        
+
             Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/1?api-version=6.1-preview.6", sut.RequestUri.AbsoluteUri);
         }
     }

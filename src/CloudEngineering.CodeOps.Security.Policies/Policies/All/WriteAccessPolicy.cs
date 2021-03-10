@@ -8,7 +8,7 @@ namespace CloudEngineering.CodeOps.Security.Policies.Policies.All
     {
         public const string PolicyName = "dfds.all.write";
 
-        public WriteAccessPolicy(IEnumerable<string> authenticationSchemes) : base(new IAuthorizationRequirement[]{new WriteAccessRequirement()}, authenticationSchemes)
+        public WriteAccessPolicy(IEnumerable<string> authenticationSchemes) : base(new IAuthorizationRequirement[] { new WriteAccessRequirement() }, authenticationSchemes)
         {
         }
     }

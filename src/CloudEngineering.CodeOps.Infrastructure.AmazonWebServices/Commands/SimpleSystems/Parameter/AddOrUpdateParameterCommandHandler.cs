@@ -19,7 +19,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
         public async override Task<ParameterDto> Handle(AddOrUpdateParameterCommand command, CancellationToken cancellationToken = default)
         {
             using var client = _awsClientFactory.Create<AmazonSimpleSystemsManagementClient>(command.AssumeProfile);
-                        
+
             ParameterDto result = null;
 
             var request = new PutParameterRequest()
@@ -32,7 +32,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Sim
             };
 
             try
-            {                
+            {
                 var response = await client.PutParameterAsync(request, cancellationToken);
 
                 if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)

@@ -5,7 +5,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.DataTransfer
 {
     public class GroupDto
     {
-        [JsonPropertyName("keys")] 
+        [JsonPropertyName("keys")]
         public IEnumerable<string> Keys { get; set; }
 
         [JsonPropertyName("metrics")]

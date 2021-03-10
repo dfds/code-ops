@@ -29,7 +29,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.Ide
                 Arn = "arn",
                 Path = "path",
                 PolicyId = "policyId",
-                PolicyName = "policyName"                
+                PolicyName = "policyName"
             };
 
             //Act

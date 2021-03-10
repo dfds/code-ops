@@ -2,8 +2,8 @@
 
 namespace CloudEngineering.CodeOps.Abstractions.Aggregates
 {
-	public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot where TKey : struct
-	{
+    public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot where TKey : struct
+    {
 
-	}
+    }
 }

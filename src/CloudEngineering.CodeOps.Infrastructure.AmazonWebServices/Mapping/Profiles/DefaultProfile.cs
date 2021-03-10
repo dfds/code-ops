@@ -10,7 +10,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Mapping.Prof
     public sealed class DefaultProfile : AutoMapper.Profile
     {
         public DefaultProfile()
-        {            
+        {
             CreateMap<Parameter, ParameterDto>()
             .ConvertUsing<ParameterToParameterDtoConverter>();
 

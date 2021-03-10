@@ -7,7 +7,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request
     {
         public string ApiVersion { get; protected set; }
 
-        protected ApiRequest() 
+        protected ApiRequest()
         {
             Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

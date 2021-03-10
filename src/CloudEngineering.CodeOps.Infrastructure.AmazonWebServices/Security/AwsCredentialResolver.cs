@@ -37,7 +37,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 
             Console.WriteLine($"Yay!! We made it!!");
 
-            return (AwsCredentials)credentialsHandle.GetCredentials(); 
+            return (AwsCredentials)credentialsHandle.GetCredentials();
         }
     }
 }

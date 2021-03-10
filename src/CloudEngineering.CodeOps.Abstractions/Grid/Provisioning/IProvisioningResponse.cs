@@ -2,8 +2,8 @@
 
 namespace CloudEngineering.CodeOps.Abstractions.Grid.Provisioning
 {
-	public interface IProvisioningResponse
-	{
-		HttpContent Content { get; }
-	}
+    public interface IProvisioningResponse
+    {
+        HttpContent Content { get; }
+    }
 }

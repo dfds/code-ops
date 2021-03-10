@@ -1,4 +1,5 @@
-﻿using CloudEngineering.CodeOps.Abstractions.Facade;
+﻿using AutoMapper;
+using CloudEngineering.CodeOps.Abstractions.Facade;
 using CloudEngineering.CodeOps.Abstractions.Strategies;
 using CloudEngineering.CodeOps.Infrastructure.Kafka.Strategies;
 using Confluent.Kafka;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 
 namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 {
@@ -18,7 +18,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
         private readonly IStrategy<ConsumeResult<string, string>> _consumptionStrategy;
         protected readonly IOptions<KafkaOptions> _options;
 
-        public KafkaConsumerService(ILogger<KafkaConsumerService> logger, IOptions<KafkaOptions> options, IMapper mapper, IFacade applicationFacade) : this(logger, options, new DefaultConsumptionStrategy(mapper, applicationFacade)) 
+        public KafkaConsumerService(ILogger<KafkaConsumerService> logger, IOptions<KafkaOptions> options, IMapper mapper, IFacade applicationFacade) : this(logger, options, new DefaultConsumptionStrategy(mapper, applicationFacade))
         {
         }
 
@@ -73,8 +73,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
                         _logger.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
 
                         await _consumptionStrategy.Apply(consumeResult, cancellationToken);
-                        
-                        
+
+
                         if (consumeResult.Offset % _options.Value.CommitPeriod == 0)
                         {
                             try

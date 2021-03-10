@@ -41,6 +41,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.C
             Assert.NotNull(result);
             Assert.Equal(result.Id, fakeBuildEvent.Resource?.GetProperty("id").GetInt32());
             Assert.Equal(result.Project.Id, fakeBuildEvent.ResourceContainers?.GetProperty("project").GetProperty("id").GetGuid());
+
+            Mock.VerifyAll(mockAdoClient);
         }
 
         [Fact]
@@ -67,6 +69,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.C
             Assert.NotNull(result);
             Assert.Equal(result.Id, fakeReleaseEvent.Resource?.GetProperty("release").GetProperty("id").GetInt32());
             Assert.Equal(result.Project.Id, fakeReleaseEvent.Resource?.GetProperty("project").GetProperty("id").GetGuid());
+
+            Mock.VerifyAll(mockAdoClient);
         }
     }
 }

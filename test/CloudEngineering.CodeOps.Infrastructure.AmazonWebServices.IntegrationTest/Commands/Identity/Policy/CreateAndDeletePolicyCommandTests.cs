@@ -16,7 +16,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         }
 
         [Fact]
-        public async Task CanCreateAndDeletePolicy() 
+        public async Task CanCreateAndDeletePolicy()
         {
             //Arrange
             var facade = _fixture.Facade;

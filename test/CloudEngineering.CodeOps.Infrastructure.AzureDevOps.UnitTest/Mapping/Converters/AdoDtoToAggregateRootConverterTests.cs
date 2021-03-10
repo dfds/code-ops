@@ -18,7 +18,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.C
             var mockAggregate = new Mock<IAggregateRoot>();
 
             mockMapper.Setup(m => m.Map<IAggregateRoot>(It.IsAny<AdoDto>())).Returns(mockAggregate.Object);
-            
+
             ITypeConverter<AdoDto, IAggregateRoot> sut = new AdoDtoToAggregateRootConverter(mockMapper.Object);
 
             //Act
@@ -30,6 +30,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.Mapping.C
             Assert.NotNull(result);
             Assert.Equal(result, mockAggregate.Object);
             Assert.Equal(result, result2);
+
+            Mock.VerifyAll(mockMapper, mockAggregate);
         }
     }
 }

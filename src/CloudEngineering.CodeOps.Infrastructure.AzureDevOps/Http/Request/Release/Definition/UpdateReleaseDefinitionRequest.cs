@@ -1,8 +1,7 @@
-﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects;
+﻿using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release;
 using System;
 using System.Net.Http;
 using System.Text.Json;
-using CloudEngineering.CodeOps.Infrastructure.AzureDevOps.DataTransferObjects.Release;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps.Http.Request.Release.Definition
 {

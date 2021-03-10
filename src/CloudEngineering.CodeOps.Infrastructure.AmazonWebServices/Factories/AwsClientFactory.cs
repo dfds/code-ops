@@ -28,7 +28,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Factories
 
                 sdkClientCredentials = new AssumeRoleAWSCredentials(impersonateCredentials, assumeProfile.RoleArn, assumeProfileCredentials.Token);
             }
-            
+
             var clientOfTConstructor = typeof(T).GetConstructor(new[] { typeof(AWSCredentials), typeof(RegionEndpoint) });
             var clientOfT = (T)clientOfTConstructor.Invoke(new object[] { sdkClientCredentials, RegionEndpoint.GetBySystemName(_options.Value.Region) });
 

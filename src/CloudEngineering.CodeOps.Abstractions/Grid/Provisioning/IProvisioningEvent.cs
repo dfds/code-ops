@@ -2,7 +2,7 @@
 
 namespace CloudEngineering.CodeOps.Abstractions.Grid.Provisioning
 {
-	public interface IProvisioningEvent : IIntegrationEvent
-	{
-	}
+    public interface IProvisioningEvent : IIntegrationEvent
+    {
+    }
 }

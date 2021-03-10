@@ -1,9 +1,7 @@
-﻿using MediatR;
-
-namespace CloudEngineering.CodeOps.Abstractions.Events
+﻿namespace CloudEngineering.CodeOps.Abstractions.Events
 {
-	public interface IDomainEvent : IEvent
-	{
+    public interface IDomainEvent : IEvent
+    {
 
-	}
+    }
 }

@@ -2,14 +2,14 @@
 
 namespace CloudEngineering.CodeOps.Abstractions.Grid.Provisioning
 {
-	public interface IDesiredState
-	{
-		string Name { get; }
+    public interface IDesiredState
+    {
+        string Name { get; }
 
-		string ApiVersion { get; }
+        string ApiVersion { get; }
 
-		IEnumerable<KeyValuePair<string, string>> Labels { get; }
+        IEnumerable<KeyValuePair<string, string>> Labels { get; }
 
-		IEnumerable<KeyValuePair<string, string>> Properties { get; }
-	}
+        IEnumerable<KeyValuePair<string, string>> Properties { get; }
+    }
 }

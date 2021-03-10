@@ -1,6 +1,4 @@
-﻿using Amazon.Runtime;
-
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
+﻿namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
     public interface IAwsCredentials
     {

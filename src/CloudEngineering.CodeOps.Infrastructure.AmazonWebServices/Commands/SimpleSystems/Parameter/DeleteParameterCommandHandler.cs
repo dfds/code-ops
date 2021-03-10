@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.SimpleSystems.Parameter
 {
     public sealed class DeleteParameterCommandHandler : AwsCommandHandler<DeleteParameterCommand, Task>
-   {
+    {
         public DeleteParameterCommandHandler(IAwsClientFactory awsClientFactory) : base(awsClientFactory)
         { }
 

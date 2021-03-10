@@ -15,7 +15,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Pro
         }
 
         public override Task<Task> Handle(UnregisterProfileCommand command, CancellationToken cancellationToken = default)
-        {            
+        {
             _credentialProfileStoreChain.UnregisterProfile(command.ProfileName);
 
             return Task.FromResult(Task.CompletedTask);
