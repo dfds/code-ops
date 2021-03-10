@@ -28,16 +28,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
 
             //Package dependencies
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediator();
             services.AddFacade(configuration);
             services.AddCommandHandlers();
-        }
-
-        private static void AddMediator(this IServiceCollection services)
-        {
-            services.AddTransient<ServiceFactory>(p => p.GetService);
-
-            services.AddSingleton<IMediator>(p => new Mediator(p.GetService<ServiceFactory>()));
         }
 
         private static void AddFacade(this IServiceCollection services, IConfiguration configuration)

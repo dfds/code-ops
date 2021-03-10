@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Text.Json;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures
 {
@@ -16,6 +15,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             var services = new ServiceCollection();
 
             services.AddAmazonWebServices(_configFixture.Configuration);
+            
+            services.AddTransient<ServiceFactory>(p => p.GetService);
+            services.AddSingleton<IMediator>(p => new Mediator(p.GetService<ServiceFactory>()));
 
             Provider = services.BuildServiceProvider();
         }
