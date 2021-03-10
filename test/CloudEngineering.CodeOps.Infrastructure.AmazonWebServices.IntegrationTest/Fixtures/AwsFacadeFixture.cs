@@ -11,10 +11,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
 
         public IAwsFacade Facade
         {
-            get
-            {
-                return _serviceFixture.Provider.GetService<IAwsFacade>();
-            }
+            get;
+            set;
         }
 
         internal IAwsProfile TestProfile
@@ -27,14 +25,21 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
 
         internal AwsFacadeOptions Options
         {
-            get
-            {
-                return _serviceFixture.Provider.GetService<IOptions<AwsFacadeOptions>>().Value;
-            }
+            get; set;
+        }
+
+        public AwsFacadeFixture() 
+        {
+            Facade = _serviceFixture.Provider.GetService<IAwsFacade>();
+            Options = _serviceFixture.Provider.GetService<IOptions<AwsFacadeOptions>>().Value;
+
+            Facade.Connect();
         }
 
         public void Dispose()
         {
+            Facade.Disconnect();
+
             _serviceFixture.Dispose();
         }
     }

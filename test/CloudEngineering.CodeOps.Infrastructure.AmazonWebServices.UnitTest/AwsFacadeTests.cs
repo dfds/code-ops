@@ -21,7 +21,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest
             };
 
             var mockMediator = new Mock<IMediator>();
-            using var sut = new AwsFacade(Options.Create(fakeOptions), mockMediator.Object);
+            var sut = new AwsFacade(Options.Create(fakeOptions), mockMediator.Object);
 
             //Act
             var hash = sut.GetHashCode();

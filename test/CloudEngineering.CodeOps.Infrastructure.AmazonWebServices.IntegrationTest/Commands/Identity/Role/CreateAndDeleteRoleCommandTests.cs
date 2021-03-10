@@ -19,7 +19,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public async Task CanCreateAndDeleteRole()
         {
             //Arrange
-            using var facade = _fixture.Facade;
+            var facade = _fixture.Facade;
 
             var roleName = Guid.NewGuid().ToString();
             var command = new CreateRoleCommand(roleName, "{\"Version\": \"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"sts:AssumeRole\", \"Principal\":{ \"AWS\": \"642375522597\" }}]}");
