@@ -36,6 +36,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
                 Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
             }
 
+            System.Console.WriteLine("Disposing awsfacade");
+            _logger.LogInformation("AwsFacade disposed");
+
             _disposed = true;
         }
     }
