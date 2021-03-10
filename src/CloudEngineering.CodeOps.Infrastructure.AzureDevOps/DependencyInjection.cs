@@ -8,10 +8,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AzureDevOps
     {
         public static void AddAzureDevOps(this IServiceCollection services, IConfiguration configuration)
         {
-            //External dependencies
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
             //Package dependencies
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.Configure<AdoClientOptions>(configuration.GetSection(AdoClientOptions.AdoClient));
 
             services.AddTransient<IAdoClient, AdoClient>();

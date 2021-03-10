@@ -26,11 +26,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
             //Framework dependencies
             services.AddLogging();
 
-            //External dependencies
+            //Package dependencies
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediator();
-
-            //Package dependencies
             services.AddFacade(configuration);
             services.AddCommandHandlers();
         }
@@ -39,7 +37,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
         {
             services.AddTransient<ServiceFactory>(p => p.GetService);
 
-            services.AddTransient<IMediator>(p => new Mediator(p.GetService<ServiceFactory>()));
+            services.AddSingleton<IMediator>(p => new Mediator(p.GetService<ServiceFactory>()));
         }
 
         private static void AddFacade(this IServiceCollection services, IConfiguration configuration)

@@ -8,19 +8,19 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
     [Order(1)]
     public class AwsFacadeTests : IClassFixture<AwsFacadeFixture>
     {
-        private readonly AwsFacadeFixture _fixture;
+        private readonly AwsFacadeFixture _awsFacadeFixture;
 
-        public AwsFacadeTests(AwsFacadeFixture fixture)
+        public AwsFacadeTests(AwsFacadeFixture awsFacadeFixture)
         {
-            _fixture = fixture;
+            _awsFacadeFixture = awsFacadeFixture;
         }
 
         [Fact, Order(1)]
         public void CanRegisterProfile()
         {
             //Arrange
-            using var sut = _fixture.Facade;
-            var cmd = new RegisterProfileCommand(_fixture.TestProfile, _fixture.Options.AccessKey, _fixture.Options.SecretKey);
+            using var sut = _awsFacadeFixture.Facade;
+            var cmd = new RegisterProfileCommand(_awsFacadeFixture.TestProfile, _awsFacadeFixture.Options.AccessKey, _awsFacadeFixture.Options.SecretKey);
 
             //Act
             var result = sut.Execute(cmd);
@@ -33,8 +33,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
         public void CanUnregisterDefaultProfile()
         {
             //Arrange
-            using var sut = _fixture.Facade;
-            var cmd = new UnregisterProfileCommand(_fixture.TestProfile.Name);
+            using var sut = _awsFacadeFixture.Facade;
+            var cmd = new UnregisterProfileCommand(_awsFacadeFixture.TestProfile.Name);
 
             //Act
             var result = sut.Execute(cmd);
