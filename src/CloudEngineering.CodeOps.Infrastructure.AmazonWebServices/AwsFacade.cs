@@ -9,6 +9,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
 {
     public sealed class AwsFacade : Facade, IAwsFacade
     {
+        private bool _disposed = false;
         private readonly IOptions<AwsFacadeOptions> _options;
 
         public AwsFacade(IOptions<AwsFacadeOptions> options, IMediator mediator, ILogger<AwsFacade> logger = default) : base(mediator, logger)
@@ -20,7 +21,22 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
 
         public void Dispose()
         {
-            Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
+            }
+
+            _disposed = true;
         }
     }
 }
