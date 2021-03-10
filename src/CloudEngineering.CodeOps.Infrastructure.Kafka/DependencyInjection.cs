@@ -16,6 +16,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
             services.AddLogging();
 
             //Package dependencies
+            services.AddKafkaProducer(configuration);
+        }
+
+        private static void AddKafkaProducer(this IServiceCollection services, IConfiguration configuration)
+        {
             services.Configure<KafkaOptions>(configuration.GetSection(KafkaOptions.Kafka));
 
             services.AddTransient(p =>
