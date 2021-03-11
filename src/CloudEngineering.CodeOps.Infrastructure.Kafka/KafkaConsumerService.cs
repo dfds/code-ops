@@ -1,5 +1,6 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Strategies;
 using Confluent.Kafka;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -12,13 +13,13 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
     public class KafkaConsumerService : BackgroundService
     {
         protected readonly ILogger<KafkaConsumerService> _logger;
-        protected readonly IStrategy<ConsumeResult<string, string>> _consumptionStrategy;
+        protected readonly IServiceScopeFactory _scopeFactory;
         protected readonly IOptions<KafkaOptions> _options;
 
-        public KafkaConsumerService(IOptions<KafkaOptions> options, IStrategy<ConsumeResult<string, string>> consumptionStrategy, ILogger<KafkaConsumerService> logger = default)
+        public KafkaConsumerService(IOptions<KafkaOptions> options, IServiceScopeFactory scopeFactory, ILogger<KafkaConsumerService> logger = default)
         {
             _options = options ?? throw new ArgumentException(null, nameof(options));
-            _consumptionStrategy = consumptionStrategy ?? throw new ArgumentException(null, nameof(consumptionStrategy));
+            _scopeFactory = scopeFactory ?? throw new ArgumentException(null, nameof(scopeFactory));
             _logger = logger;
         }
 
@@ -65,8 +66,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
                         _logger?.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
 
-                        await _consumptionStrategy.Apply(consumeResult, cancellationToken);
+                        using var scope = _scopeFactory.CreateScope();
 
+                        var consumptionStrategy = scope.ServiceProvider.GetRequiredService<IStrategy<ConsumeResult<string, string>>>();
+
+                        await consumptionStrategy.Apply(consumeResult, cancellationToken);
 
                         if (consumeResult.Offset % _options.Value.CommitPeriod == 0)
                         {
