@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using CloudEngineering.CodeOps.Abstractions.Facade;
-using CloudEngineering.CodeOps.Abstractions.Strategies;
-using CloudEngineering.CodeOps.Infrastructure.Kafka.Strategies;
+﻿using CloudEngineering.CodeOps.Abstractions.Strategies;
 using Confluent.Kafka;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -15,18 +12,14 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
     public class KafkaConsumerService : BackgroundService
     {
         protected readonly ILogger<KafkaConsumerService> _logger;
-        private readonly IStrategy<ConsumeResult<string, string>> _consumptionStrategy;
+        protected readonly IStrategy<ConsumeResult<string, string>> _consumptionStrategy;
         protected readonly IOptions<KafkaOptions> _options;
 
-        public KafkaConsumerService(ILogger<KafkaConsumerService> logger, IOptions<KafkaOptions> options, IMapper mapper, IFacade applicationFacade) : this(logger, options, new DefaultConsumptionStrategy(mapper, applicationFacade))
+        public KafkaConsumerService(IOptions<KafkaOptions> options, IStrategy<ConsumeResult<string, string>> consumptionStrategy, ILogger<KafkaConsumerService> logger = default)
         {
-        }
-
-        public KafkaConsumerService(ILogger<KafkaConsumerService> logger, IOptions<KafkaOptions> options, IStrategy<ConsumeResult<string, string>> consumptionStrategy)
-        {
-            _logger = logger ?? throw new ArgumentException(null, nameof(logger));
             _options = options ?? throw new ArgumentException(null, nameof(options));
             _consumptionStrategy = consumptionStrategy ?? throw new ArgumentException(null, nameof(consumptionStrategy));
+            _logger = logger;
         }
 
         protected async override Task ExecuteAsync(CancellationToken cancellationToken)
@@ -38,15 +31,15 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
             };
 
             using var consumer = new ConsumerBuilder<string, string>(config)
-            .SetErrorHandler((_, e) => _logger.LogError($"Error: {e.Reason}", e))
-            .SetStatisticsHandler((_, json) => _logger.LogDebug($"Statistics: {json}"))
+            .SetErrorHandler((_, e) => _logger?.LogError($"Error: {e.Reason}", e))
+            .SetStatisticsHandler((_, json) => _logger?.LogDebug($"Statistics: {json}"))
             .SetPartitionsAssignedHandler((c, partitions) =>
             {
-                _logger.LogInformation($"Assigned partitions: [{string.Join(", ", partitions)}]");
+                _logger?.LogInformation($"Assigned partitions: [{string.Join(", ", partitions)}]");
             })
             .SetPartitionsRevokedHandler((c, partitions) =>
             {
-                _logger.LogInformation($"Revoking assignment: [{string.Join(", ", partitions)}]");
+                _logger?.LogInformation($"Revoking assignment: [{string.Join(", ", partitions)}]");
             })
             .Build();
 
@@ -65,12 +58,12 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
                         if (consumeResult.IsPartitionEOF)
                         {
-                            _logger.LogInformation($"Reached end of topic {consumeResult.Topic}, partition {consumeResult.Partition}, offset {consumeResult.Offset}.");
+                            _logger?.LogInformation($"Reached end of topic {consumeResult.Topic}, partition {consumeResult.Partition}, offset {consumeResult.Offset}.");
 
                             continue;
                         }
 
-                        _logger.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
+                        _logger?.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
 
                         await _consumptionStrategy.Apply(consumeResult, cancellationToken);
 
@@ -83,19 +76,19 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
                             }
                             catch (KafkaException e)
                             {
-                                _logger.LogError($"Commit error: {e.Error.Reason}", e);
+                                _logger?.LogError($"Commit error: {e.Error.Reason}", e);
                             }
                         }
                     }
                     catch (ConsumeException e)
                     {
-                        _logger.LogError($"Consume error: {e.Error.Reason}", e);
+                        _logger?.LogError($"Consume error: {e.Error.Reason}", e);
                     }
                 }
             }
             catch (OperationCanceledException e)
             {
-                _logger.LogInformation("Closing consumer.", e);
+                _logger?.LogInformation("Closing consumer.", e);
 
                 consumer.Close();
             }
