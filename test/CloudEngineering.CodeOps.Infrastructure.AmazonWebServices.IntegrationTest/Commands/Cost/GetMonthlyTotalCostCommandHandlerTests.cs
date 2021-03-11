@@ -47,7 +47,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             Assert.NotNull(result);
         }
 
-        [Fact(Skip = "It seems like the account we use for the SDK affects the result from the API. We need to use prime and the assume roles for individual accounts.")]
+        //TODO: It seems like the account we use for the SDK affects the result from the API. We need to use prime and the assume roles for individual accounts.
+        [Fact]
         public async Task CanGetMonthlyTotalCostForOtherCapabilityAccount()
         {
             //Arrange
