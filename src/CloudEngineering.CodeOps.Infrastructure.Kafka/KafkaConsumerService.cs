@@ -15,9 +15,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
         protected readonly IStrategy<ConsumeResult<string, string>> _consumptionStrategy;
         protected readonly IOptions<KafkaOptions> _options;
 
-        public KafkaConsumerService(IOptions<KafkaOptions> options, ILogger<KafkaConsumerService> logger = default)
+        public KafkaConsumerService(IOptions<KafkaOptions> options, IStrategy<ConsumeResult<string, string>> consumptionStrategy, ILogger<KafkaConsumerService> logger = default)
         {
             _options = options ?? throw new ArgumentException(null, nameof(options));
+            _consumptionStrategy = consumptionStrategy ?? throw new ArgumentException(null, nameof(consumptionStrategy));
             _logger = logger;
         }
 
@@ -64,7 +65,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
                         _logger?.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
 
-                        await _consumptionStrategy?.Apply(consumeResult, cancellationToken);
+                        await _consumptionStrategy.Apply(consumeResult, cancellationToken);
 
 
                         if (consumeResult.Offset % _options.Value.CommitPeriod == 0)
