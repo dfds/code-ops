@@ -29,10 +29,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
             using var scope = _scopeFactory.CreateScope();
             var consumer = scope.ServiceProvider.GetRequiredService<IConsumer<string, string>>();
 
-            foreach (var topic in _options.Value.Topics)
-            {
-                consumer.Subscribe(topic);
-            }
+            consumer.Subscribe(_options.Value.Topics);
 
             try
             {
