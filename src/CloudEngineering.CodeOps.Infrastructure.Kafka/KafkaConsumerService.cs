@@ -1,4 +1,5 @@
-﻿using CloudEngineering.CodeOps.Abstractions.Strategies;
+﻿using CloudEngineering.CodeOps.Abstractions.Events;
+using CloudEngineering.CodeOps.Abstractions.Strategies;
 using Confluent.Kafka;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,24 +26,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
         protected async override Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            var config = new ConsumerConfig(_options.Value.Configuration)
-            {
-                EnablePartitionEof = _options.Value.EnablePartitionEof,
-                StatisticsIntervalMs = _options.Value.StatisticsIntervalMs
-            };
-
-            using var consumer = new ConsumerBuilder<string, string>(config)
-            .SetErrorHandler((_, e) => _logger?.LogError($"Error: {e.Reason}", e))
-            .SetStatisticsHandler((_, json) => _logger?.LogDebug($"Statistics: {json}"))
-            .SetPartitionsAssignedHandler((c, partitions) =>
-            {
-                _logger?.LogInformation($"Assigned partitions: [{string.Join(", ", partitions)}]");
-            })
-            .SetPartitionsRevokedHandler((c, partitions) =>
-            {
-                _logger?.LogInformation($"Revoking assignment: [{string.Join(", ", partitions)}]");
-            })
-            .Build();
+            using var scope = _scopeFactory.CreateScope();
+            var consumer = scope.ServiceProvider.GetRequiredService<IConsumer<string, string>>();
 
             foreach (var topic in _options.Value.Topics)
             {
@@ -65,8 +50,6 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
                         }
 
                         _logger?.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
-
-                        using var scope = _scopeFactory.CreateScope();
 
                         var consumptionStrategy = scope.ServiceProvider.GetRequiredService<IStrategy<ConsumeResult<string, string>>>();
 
