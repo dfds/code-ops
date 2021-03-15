@@ -29,5 +29,22 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationT
             //Assert
             Assert.NotNull(result);
         }
+
+        [Fact]
+        public async Task CanGetMonthlyTotalCostForAccount()
+        {
+            //Arrange
+            var facade = _fixture.Facade;
+            var command = new GetMonthlyTotalCostCommand() 
+            {
+                AccountIdentifier = "642375522597"
+            };
+
+            //Act
+            var result = await facade.Execute(command);
+
+            //Assert
+            Assert.NotNull(result);
+        }
     }
 }
