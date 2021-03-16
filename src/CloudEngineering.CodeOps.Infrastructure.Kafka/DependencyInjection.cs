@@ -17,18 +17,52 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
             //Package dependencies
             services.Configure<KafkaOptions>(configuration.GetSection(KafkaOptions.Kafka));
+            services.AddKafkaProducer();
+            services.AddKafkaConsumer();
+        }
 
+        private static void AddKafkaProducer(this IServiceCollection services)
+        {
             services.AddTransient(p =>
             {
                 var logger = p.GetService<ILogger<IProducer<string, IIntegrationEvent>>>();
-                var producerOptions = p.GetService<IOptions<KafkaOptions>>();
-                var producerBuilder = new ProducerBuilder<string, IIntegrationEvent>(producerOptions.Value.Configuration);
+                var kafkaOptions = p.GetService<IOptions<KafkaOptions>>();
+                var producerBuilder = new ProducerBuilder<string, IIntegrationEvent>(kafkaOptions.Value.Configuration);
                 var producer = producerBuilder.SetErrorHandler((_, e) => logger.LogError($"Error: {e?.Reason}", e))
                                             .SetStatisticsHandler((_, json) => logger.LogDebug($"Statistics: {json}"))
                                             .SetValueSerializer(new DefaultValueSerializer<IIntegrationEvent>())
                                             .Build();
 
                 return producer;
+            });
+        }
+
+        private static void AddKafkaConsumer(this IServiceCollection services)
+        {
+            services.AddTransient(p =>
+            {
+                var logger = p.GetService<ILogger<KafkaConsumerService>>();
+                var kafkaOptions = p.GetService<IOptions<KafkaOptions>>();
+                var consumerConfig = new ConsumerConfig(kafkaOptions.Value.Configuration)
+                {
+                    EnablePartitionEof = kafkaOptions.Value.EnablePartitionEof,
+                    StatisticsIntervalMs = kafkaOptions.Value.StatisticsIntervalMs
+                };
+                var consumerBuilder = new ConsumerBuilder<string, string>(consumerConfig);
+                var consumer = consumerBuilder
+                                .SetErrorHandler((_, e) => logger?.LogError($"Error: {e.Reason}", e))
+                                .SetStatisticsHandler((_, json) => logger?.LogDebug($"Statistics: {json}"))
+                                .SetPartitionsAssignedHandler((c, partitions) =>
+                                {
+                                    logger?.LogInformation($"Assigned partitions: [{string.Join(", ", partitions)}]");
+                                })
+                                .SetPartitionsRevokedHandler((c, partitions) =>
+                                {
+                                    logger?.LogInformation($"Revoking assignment: [{string.Join(", ", partitions)}]");
+                                })
+                                .Build();
+
+                return consumer;
             });
         }
     }

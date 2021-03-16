@@ -1,8 +1,7 @@
-﻿using AutoMapper;
-using CloudEngineering.CodeOps.Abstractions.Facade;
+﻿using CloudEngineering.CodeOps.Abstractions.Events;
 using CloudEngineering.CodeOps.Abstractions.Strategies;
-using CloudEngineering.CodeOps.Infrastructure.Kafka.Strategies;
 using Confluent.Kafka;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -15,45 +14,22 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
     public class KafkaConsumerService : BackgroundService
     {
         protected readonly ILogger<KafkaConsumerService> _logger;
-        private readonly IStrategy<ConsumeResult<string, string>> _consumptionStrategy;
+        protected readonly IServiceScopeFactory _scopeFactory;
         protected readonly IOptions<KafkaOptions> _options;
 
-        public KafkaConsumerService(ILogger<KafkaConsumerService> logger, IOptions<KafkaOptions> options, IMapper mapper, IFacade applicationFacade) : this(logger, options, new DefaultConsumptionStrategy(mapper, applicationFacade))
+        public KafkaConsumerService(IOptions<KafkaOptions> options, IServiceScopeFactory scopeFactory, ILogger<KafkaConsumerService> logger = default)
         {
-        }
-
-        public KafkaConsumerService(ILogger<KafkaConsumerService> logger, IOptions<KafkaOptions> options, IStrategy<ConsumeResult<string, string>> consumptionStrategy)
-        {
-            _logger = logger ?? throw new ArgumentException(null, nameof(logger));
             _options = options ?? throw new ArgumentException(null, nameof(options));
-            _consumptionStrategy = consumptionStrategy ?? throw new ArgumentException(null, nameof(consumptionStrategy));
+            _scopeFactory = scopeFactory ?? throw new ArgumentException(null, nameof(scopeFactory));
+            _logger = logger;
         }
 
         protected async override Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            var config = new ConsumerConfig(_options.Value.Configuration)
-            {
-                EnablePartitionEof = _options.Value.EnablePartitionEof,
-                StatisticsIntervalMs = _options.Value.StatisticsIntervalMs
-            };
+            using var scope = _scopeFactory.CreateScope();
+            var consumer = scope.ServiceProvider.GetRequiredService<IConsumer<string, string>>();
 
-            using var consumer = new ConsumerBuilder<string, string>(config)
-            .SetErrorHandler((_, e) => _logger.LogError($"Error: {e.Reason}", e))
-            .SetStatisticsHandler((_, json) => _logger.LogDebug($"Statistics: {json}"))
-            .SetPartitionsAssignedHandler((c, partitions) =>
-            {
-                _logger.LogInformation($"Assigned partitions: [{string.Join(", ", partitions)}]");
-            })
-            .SetPartitionsRevokedHandler((c, partitions) =>
-            {
-                _logger.LogInformation($"Revoking assignment: [{string.Join(", ", partitions)}]");
-            })
-            .Build();
-
-            foreach (var topic in _options.Value.Topics)
-            {
-                consumer.Subscribe(topic);
-            }
+            consumer.Subscribe(_options.Value.Topics);
 
             try
             {
@@ -65,15 +41,16 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
 
                         if (consumeResult.IsPartitionEOF)
                         {
-                            _logger.LogInformation($"Reached end of topic {consumeResult.Topic}, partition {consumeResult.Partition}, offset {consumeResult.Offset}.");
+                            _logger?.LogInformation($"Reached end of topic {consumeResult.Topic}, partition {consumeResult.Partition}, offset {consumeResult.Offset}.");
 
                             continue;
                         }
 
-                        _logger.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
+                        _logger?.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}");
 
-                        await _consumptionStrategy.Apply(consumeResult, cancellationToken);
+                        var consumptionStrategy = scope.ServiceProvider.GetRequiredService<IStrategy<ConsumeResult<string, string>>>();
 
+                        await consumptionStrategy.Apply(consumeResult, cancellationToken);
 
                         if (consumeResult.Offset % _options.Value.CommitPeriod == 0)
                         {
@@ -83,19 +60,19 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka
                             }
                             catch (KafkaException e)
                             {
-                                _logger.LogError($"Commit error: {e.Error.Reason}", e);
+                                _logger?.LogError($"Commit error: {e.Error.Reason}", e);
                             }
                         }
                     }
                     catch (ConsumeException e)
                     {
-                        _logger.LogError($"Consume error: {e.Error.Reason}", e);
+                        _logger?.LogError($"Consume error: {e.Error.Reason}", e);
                     }
                 }
             }
             catch (OperationCanceledException e)
             {
-                _logger.LogInformation("Closing consumer.", e);
+                _logger?.LogInformation("Closing consumer.", e);
 
                 consumer.Close();
             }
