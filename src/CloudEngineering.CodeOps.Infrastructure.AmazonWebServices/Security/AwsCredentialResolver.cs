@@ -1,7 +1,6 @@
 ﻿using Amazon.Runtime.CredentialManagement;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Identity;
 using Microsoft.Extensions.Options;
-using System;
 
 namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Security
 {
