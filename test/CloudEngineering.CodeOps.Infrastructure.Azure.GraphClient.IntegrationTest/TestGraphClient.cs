@@ -16,7 +16,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationT
             _clientOptions = cf.Configuration.GetSection("GraphClient").Get<GraphClientOptions>();
         }
 
-        [Fact]
+        [Fact(skip="TODO: TOBAN")]
         public async Task GraphClientCanListAppRole()
         {
             // Arrange
@@ -30,7 +30,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationT
             // Assert.True(response.IsSuccessStatusCode);
         }
 
-        [Fact]
+        [Fact(skip="TODO: TOBAN")]
         public async Task GraphClientCanAddAppRole()
         {
             // Arrange
