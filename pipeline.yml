@@ -6,9 +6,9 @@
 trigger:
   branches:
     include:
-    - issue-206
-    exclude:
     - master
+    exclude:
+    - issue-206
 
 pool:
   vmImage: 'windows-latest'
@@ -39,6 +39,7 @@ steps:
     command: 'test'
     arguments: '--no-build'
   env:
+    GraphClient__ClientSecret: $(System.AccessToken)
     AwsFacade__SecretKey: $(AwsFacade__SecretKey)
     AdoClient__ClientAccessToken: $(System.AccessToken)
 
