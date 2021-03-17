@@ -42,6 +42,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Security.Policies.UnitTest", "test\CloudEngineering.CodeOps.Security.Policies.UnitTest\CloudEngineering.CodeOps.Security.Policies.UnitTest.csproj", "{959CAAE3-C5BF-4896-B83A-A926C0776979}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest", "test\CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest\CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest.csproj", "{21004727-EF64-4DA9-A124-BD9A778B80BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient", "src\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.csproj", "{8972E8BA-0015-4107-AB29-0D9DB3A3912F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest", "test\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest.csproj", "{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +98,18 @@ Global
 		{959CAAE3-C5BF-4896-B83A-A926C0776979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959CAAE3-C5BF-4896-B83A-A926C0776979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959CAAE3-C5BF-4896-B83A-A926C0776979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21004727-EF64-4DA9-A124-BD9A778B80BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21004727-EF64-4DA9-A124-BD9A778B80BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21004727-EF64-4DA9-A124-BD9A778B80BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21004727-EF64-4DA9-A124-BD9A778B80BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8972E8BA-0015-4107-AB29-0D9DB3A3912F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8972E8BA-0015-4107-AB29-0D9DB3A3912F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8972E8BA-0015-4107-AB29-0D9DB3A3912F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8972E8BA-0015-4107-AB29-0D9DB3A3912F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +120,8 @@ Global
 		{2751DD5C-604D-4FF1-922A-27AE9F184752} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 		{8619867C-4FCB-47D7-8B38-DC1F258A8786} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 		{959CAAE3-C5BF-4896-B83A-A926C0776979} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
+		{21004727-EF64-4DA9-A124-BD9A778B80BA} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
+		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9448AE6-B1F7-4EC1-BD90-A66D74064341}
