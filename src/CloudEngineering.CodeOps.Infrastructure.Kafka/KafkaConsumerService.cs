@@ -1,5 +1,4 @@
-﻿using CloudEngineering.CodeOps.Abstractions.Events;
-using CloudEngineering.CodeOps.Abstractions.Strategies;
+﻿using CloudEngineering.CodeOps.Abstractions.Strategies;
 using Confluent.Kafka;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
