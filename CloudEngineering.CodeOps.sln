@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ado", ".ado", "{F5BDABA2-5
 		pipeline.yml = pipeline.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AzureDevOps", "src\CloudEngineering.CodeOps.Infrastructure.AzureDevOps\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.csproj", "{3DE90C90-5F10-450D-8B73-9E4E98ECBD23}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B7C37D0C-195A-40D0-B590-BB47A482F1C4}"
 	ProjectSection(SolutionItems) = preProject
 		nuget.config = nuget.config
@@ -36,10 +34,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest", "test\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest\CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.UnitTest.csproj", "{B81A2B05-3766-4BAA-93F3-66655739343D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest", "test\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.UnitTest.csproj", "{2751DD5C-604D-4FF1-922A-27AE9F184752}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest", "test\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest\CloudEngineering.CodeOps.Infrastructure.AzureDevOps.IntegrationTest.csproj", "{8619867C-4FCB-47D7-8B38-DC1F258A8786}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Security.Policies.UnitTest", "test\CloudEngineering.CodeOps.Security.Policies.UnitTest\CloudEngineering.CodeOps.Security.Policies.UnitTest.csproj", "{959CAAE3-C5BF-4896-B83A-A926C0776979}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest", "test\CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest\CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest.csproj", "{21004727-EF64-4DA9-A124-BD9A778B80BA}"
@@ -47,6 +41,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient", "src\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.csproj", "{8972E8BA-0015-4107-AB29-0D9DB3A3912F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest", "test\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest.csproj", "{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.DevOps", "src\CloudEngineering.CodeOps.Infrastructure.Azure.DevOps\CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.csproj", "{627F33D1-1CE3-49FE-85E9-0637BD098AB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.UnitTest", "test\CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.UnitTest\CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.UnitTest.csproj", "{B1573B87-5632-4875-B128-96B3C7B0BA84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.IntegrationTest", "test\CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.IntegrationTest\CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.IntegrationTest.csproj", "{5DA43051-74E2-4CAF-862B-324082CC3B9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +66,6 @@ Global
 		{66AE13CF-E02B-4BFF-9315-E0E9CE8290BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66AE13CF-E02B-4BFF-9315-E0E9CE8290BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66AE13CF-E02B-4BFF-9315-E0E9CE8290BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DE90C90-5F10-450D-8B73-9E4E98ECBD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DE90C90-5F10-450D-8B73-9E4E98ECBD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DE90C90-5F10-450D-8B73-9E4E98ECBD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DE90C90-5F10-450D-8B73-9E4E98ECBD23}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17AAFE4F-5251-4DF5-8B43-5D267439FECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17AAFE4F-5251-4DF5-8B43-5D267439FECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17AAFE4F-5251-4DF5-8B43-5D267439FECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -86,14 +82,6 @@ Global
 		{B81A2B05-3766-4BAA-93F3-66655739343D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B81A2B05-3766-4BAA-93F3-66655739343D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B81A2B05-3766-4BAA-93F3-66655739343D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2751DD5C-604D-4FF1-922A-27AE9F184752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2751DD5C-604D-4FF1-922A-27AE9F184752}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2751DD5C-604D-4FF1-922A-27AE9F184752}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2751DD5C-604D-4FF1-922A-27AE9F184752}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8619867C-4FCB-47D7-8B38-DC1F258A8786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8619867C-4FCB-47D7-8B38-DC1F258A8786}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8619867C-4FCB-47D7-8B38-DC1F258A8786}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8619867C-4FCB-47D7-8B38-DC1F258A8786}.Release|Any CPU.Build.0 = Release|Any CPU
 		{959CAAE3-C5BF-4896-B83A-A926C0776979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{959CAAE3-C5BF-4896-B83A-A926C0776979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959CAAE3-C5BF-4896-B83A-A926C0776979}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -110,6 +98,18 @@ Global
 		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{627F33D1-1CE3-49FE-85E9-0637BD098AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627F33D1-1CE3-49FE-85E9-0637BD098AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627F33D1-1CE3-49FE-85E9-0637BD098AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627F33D1-1CE3-49FE-85E9-0637BD098AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1573B87-5632-4875-B128-96B3C7B0BA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1573B87-5632-4875-B128-96B3C7B0BA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1573B87-5632-4875-B128-96B3C7B0BA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1573B87-5632-4875-B128-96B3C7B0BA84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA43051-74E2-4CAF-862B-324082CC3B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA43051-74E2-4CAF-862B-324082CC3B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA43051-74E2-4CAF-862B-324082CC3B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA43051-74E2-4CAF-862B-324082CC3B9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,11 +117,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{54579483-4237-4992-9F27-4BA31A35FFAC} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 		{B81A2B05-3766-4BAA-93F3-66655739343D} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
-		{2751DD5C-604D-4FF1-922A-27AE9F184752} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
-		{8619867C-4FCB-47D7-8B38-DC1F258A8786} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 		{959CAAE3-C5BF-4896-B83A-A926C0776979} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 		{21004727-EF64-4DA9-A124-BD9A778B80BA} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 		{E26D0A2A-1BD3-40B5-A220-9B9C4B9B8139} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
+		{B1573B87-5632-4875-B128-96B3C7B0BA84} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
+		{5DA43051-74E2-4CAF-862B-324082CC3B9A} = {18C7D691-211D-42E7-A423-3E2B02B286DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9448AE6-B1F7-4EC1-BD90-A66D74064341}

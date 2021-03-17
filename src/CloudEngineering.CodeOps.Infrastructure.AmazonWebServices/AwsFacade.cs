@@ -17,8 +17,8 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
         {
             _options = options;
 
-            if(_options.Value.Impersonate != null)
-            { 
+            if (_options.Value.Impersonate != null)
+            {
                 Task.WaitAll(Execute(new RegisterProfileCommand(_options.Value.Impersonate, _options.Value.AccessKey, _options.Value.SecretKey)));
             }
         }
@@ -35,7 +35,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
                 if (disposing)
                 {
                     if (_options.Value.Impersonate != null)
-                    { 
+                    {
                         Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
                     }
                 }

@@ -1,10 +1,5 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Confluent.Kafka;
 using CloudEngineering.CodeOps.Infrastructure.Kafka.Serialization;
-using CloudEngineering.CodeOps.Infrastructure.Kafka.Strategies;
-using CloudEngineering.CodeOps.Abstractions.Events;
+using Confluent.Kafka;
 using Xunit;
 
 namespace CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest
@@ -15,7 +10,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest
         public void CanSerialize()
         {
             // Arrange
-            SerializationContext testContext = new SerializationContext(MessageComponentType.Key,null,null);
+            SerializationContext testContext = new SerializationContext(MessageComponentType.Key, null, null);
             DefaultValueSerializer<string> testSerializer = new DefaultValueSerializer<string>();
             string testPayload = new string("Test Payload");
 
@@ -24,7 +19,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest
 
             // Assert
             Assert.NotNull(returnValue);
-            Assert.Equal(returnValue, testSerializer.Serialize(testPayload,testContext));
+            Assert.Equal(returnValue, testSerializer.Serialize(testPayload, testContext));
         }
     }
 }
