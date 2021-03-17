@@ -17,7 +17,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
         {
             _options = options;
 
-            Task.WaitAll(Execute(new RegisterProfileCommand(_options.Value.Impersonate, _options.Value.AccessKey, _options.Value.SecretKey)));
+            if(_options.Value.Impersonate != null)
+            { 
+                Task.WaitAll(Execute(new RegisterProfileCommand(_options.Value.Impersonate, _options.Value.AccessKey, _options.Value.SecretKey)));
+            }
         }
 
         public override async Task<T> Execute<T>(ICommand<T> command, CancellationToken cancellationToken = default)
@@ -31,7 +34,10 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
             {
                 if (disposing)
                 {
-                    Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
+                    if (_options.Value.Impersonate != null)
+                    { 
+                        Task.WaitAll(Execute(new UnregisterProfileCommand(_options.Value.Impersonate.Name)));
+                    }
                 }
 
                 _disposedValue = true;
