@@ -29,4 +29,10 @@
     <ProjectReference Include="..\..\src\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient\CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

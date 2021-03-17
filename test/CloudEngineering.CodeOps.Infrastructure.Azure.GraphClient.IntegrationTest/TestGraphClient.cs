@@ -13,7 +13,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationT
 
         public TestGraphClient(ConfigurationFixture cf)
         {
-            var _clientOptions = cf.Configuration.GetSection("GraphClient").Get<GraphClientOptions>();
+            _clientOptions = cf.Configuration.GetSection("GraphClient").Get<GraphClientOptions>();
         }
 
         [Fact]
