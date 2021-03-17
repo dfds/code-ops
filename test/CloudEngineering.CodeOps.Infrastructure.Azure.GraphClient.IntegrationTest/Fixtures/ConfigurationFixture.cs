@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.IntegrationTest.Fixtures
+namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationTest.Fixtures
 {
     public class ConfigurationFixture : IDisposable
     {

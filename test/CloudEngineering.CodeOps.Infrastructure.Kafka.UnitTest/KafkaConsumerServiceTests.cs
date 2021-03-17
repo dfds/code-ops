@@ -20,7 +20,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Kafka.UnitTest
             var mockConsumerStrategy = new Mock<IStrategy<ConsumeResult<string, string>>>();
             var mockConsumer = new Mock<IConsumer<string, string>>();
 
-            _ = mockConsumerStrategy.Setup(m => m.Apply(target: It.IsAny<ConsumeResult<string, string>>(), It.IsAny<CancellationToken>()));
+            _ = mockConsumerStrategy.Setup(m => m.Apply(It.IsAny<ConsumeResult<string, string>>(), It.IsAny<CancellationToken>()));
 
         }
 
