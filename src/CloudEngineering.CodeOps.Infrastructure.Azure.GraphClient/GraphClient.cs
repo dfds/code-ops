@@ -38,6 +38,11 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient
             }
         }
 
+        public async Task<HttpResponseMessage> GetPrincipalIdByGroupName(string groupName)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<HttpResponseMessage> ListAppRoleRequest(string principalIdOrUserPrincipalName, CancellationToken token = default)
         {
             var request = new ListAppRoleRequest(principalIdOrUserPrincipalName);
