@@ -45,5 +45,20 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient.IntegrationT
             Assert.True(response.StatusCode != System.Net.HttpStatusCode.NotFound);
             Assert.True(response.StatusCode != System.Net.HttpStatusCode.BadRequest);
         }
+
+        [Fact]
+        public async Task GraphClientCanGetGroupByName()
+        {
+            // Arrange
+            var sut = new GraphClient(_clientOptions);
+
+            // Act
+            var response = await sut.GetGroupByName("R IT BuildSource developerautomation-xavgy");
+
+            // Assert
+            Assert.True(response.StatusCode != System.Net.HttpStatusCode.NotFound);
+            Assert.True(response.StatusCode != System.Net.HttpStatusCode.BadRequest);
+        }
+
     }
 }

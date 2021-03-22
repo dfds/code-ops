@@ -10,6 +10,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
+
 
 namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient
 {
@@ -38,10 +40,15 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.GraphClient
             }
         }
 
-        public async Task<HttpResponseMessage> GetPrincipalIdByGroupName(string groupName)
+        public async Task<HttpResponseMessage> GetGroupByFilter(string filter, string select, CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            var request = new GetGroupsRequest(filter, select);
+            request.Headers.Authorization ??= GetAuthZHeader();
+            var response = await SendAsync(request, token);
+            return response;
         }
+
+        public async Task<HttpResponseMessage> GetGroupByName(string name, CancellationToken token = default) => await GetGroupByFilter($"displayName+eq+'{HttpUtility.UrlEncode(name)}'", "id", token);
 
         public async Task<HttpResponseMessage> ListAppRoleRequest(string principalIdOrUserPrincipalName, CancellationToken token = default)
         {
