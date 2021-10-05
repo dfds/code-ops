@@ -1,7 +1,7 @@
 ﻿using CloudEngineering.CodeOps.Abstractions.Commands;
 using CloudEngineering.CodeOps.Abstractions.Facade;
 using CloudEngineering.CodeOps.Infrastructure.AmazonWebServices.Commands.Profile;
-using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 using Microsoft.Extensions.Options;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.AmazonWebServices
         private bool _disposedValue;
         private readonly IOptions<AwsFacadeOptions> _options;
 
-        public AwsFacade(IOptions<AwsFacadeOptions> options, IServiceScopeFactory scopeFactory) : base(scopeFactory)
+        public AwsFacade(IMediator mediator, IOptions<AwsFacadeOptions> options) : base(mediator)
         {
             _options = options;
 
