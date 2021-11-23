@@ -63,5 +63,5 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Write-Host "##vso[build.addbuildtag]capability_id:3982dbbb-9064-4f26-88f7-df7eeeafbd33"'
+    script: 'Write-Host "##vso[build.addbuildtag]capability_id=3982dbbb-9064-4f26-88f7-df7eeeafbd33"'
   displayName: 'add capability id buildtag'
