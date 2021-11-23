@@ -25,7 +25,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.IntegrationTest
             //Arrange
             var options = new AdoClientOptions()
             {
-                ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientAccessToken"),
+                ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientSecret"),
                 Issuer = _fixture.Configuration.GetValue<Uri>("AdoClient:Issuer"),
                 RedirectUri = _fixture.Configuration.GetValue<Uri>("AdoClient:RedirectUri")
             };
@@ -46,7 +46,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.IntegrationTest
             //Arrange
             var options = new AdoClientOptions()
             {
-                ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientAccessToken"),
+                ClientSecret = _fixture.Configuration.GetValue<string>("AdoClient:ClientSecret"),
                 Issuer = _fixture.Configuration.GetValue<Uri>("AdoClient:Issuer"),
                 RedirectUri = _fixture.Configuration.GetValue<Uri>("AdoClient:RedirectUri")
             };
