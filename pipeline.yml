@@ -59,3 +59,13 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     publishVstsFeed: '8f93db05-d907-48d6-8537-c2b31e220950'
+
+- task: Bash@3
+  inputs:
+    targetType: inline
+    script: 
+        "curl -X POST \
+        -u :$(System.AccessToken) https://dev.azure.com/{OrganizationName}/{ProjectName}/_apis/build/builds/$(build.buildid)/tags?api-version=6.0 \
+        -H 'Accept: application/json' \
+        -H 'Content-Type: application/json' \
+        -d ' [\"3982dbbb-9064-4f26-88f7-df7eeeafbd33\"]'"
