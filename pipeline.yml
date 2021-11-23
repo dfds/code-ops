@@ -41,7 +41,7 @@ steps:
   env:
     GraphClient__ClientSecret: $(System.AccessToken)
     AwsFacade__SecretKey: $(AwsFacade__SecretKey)
-    AdoClient__ClientAccessToken: $(System.AccessToken)
+    AdoClient__ClientSecret: $(System.AccessToken)
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
