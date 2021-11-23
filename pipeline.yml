@@ -9,6 +9,9 @@ trigger:
     - master
     exclude:
     - issue-206
+    - README.md
+    - LICENSE
+    - pipeline.yml
 
 pool:
   vmImage: 'windows-latest'
