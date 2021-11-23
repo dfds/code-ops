@@ -9,6 +9,10 @@ trigger:
     - master
     exclude:
     - issue-206
+
+  paths:
+    # Changes to these files does not trigger a new build / release
+    exclude:
     - README.md
     - LICENSE
     - pipeline.yml
