@@ -20,9 +20,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.UnitTest.Http.Req
 
             //Assert
             Assert.NotNull(sut);
-            Assert.Equal("6.0", sut.ApiVersion);
+            Assert.Equal("6.1-preview.7", sut.ApiVersion);
             Assert.Equal(HttpMethod.Post, sut.Method);
-            Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/builds?api-version=6.0&definitionId=1", sut.RequestUri.AbsoluteUri);
+            Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/builds?api-version=6.1-preview.7&definitionId=1", sut.RequestUri.AbsoluteUri);
         }
 
         [Fact]
@@ -36,9 +36,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.UnitTest.Http.Req
 
             //Assert
             Assert.NotNull(sut);
-            Assert.Equal("6.0", sut.ApiVersion);
+            Assert.Equal("6.1-preview.7", sut.ApiVersion);
             Assert.Equal(HttpMethod.Post, sut.Method);
-            Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/builds?api-version=6.0&definitionId=0", sut.RequestUri.AbsoluteUri);
+            Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/builds?api-version=6.1-preview.7&definitionId=0", sut.RequestUri.AbsoluteUri);
             Assert.True(await new StringContent(JsonSerializer.Serialize(new BuildDefinitionDto())).ReadAsStringAsync() == await sut.Content.ReadAsStringAsync());
         }
     }

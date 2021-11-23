@@ -7,9 +7,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.Http.Request.Buil
     {
         public GetBuildRequest(string organization, string project, int buildId)
         {
-            ApiVersion = "6.1-preview.6";
+            ApiVersion = "6.1-preview.7";
             Method = HttpMethod.Get;
-            RequestUri = new Uri($"https://dev.azure.com/{organization}/{project}/_apis/build/{buildId}?api-version={ApiVersion}");
+            RequestUri = new Uri($"https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version={ApiVersion}");
         }
     }
 }

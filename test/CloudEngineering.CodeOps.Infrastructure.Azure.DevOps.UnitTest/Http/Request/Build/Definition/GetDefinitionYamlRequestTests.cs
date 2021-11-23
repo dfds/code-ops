@@ -17,9 +17,9 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.UnitTest.Http.Req
 
             //Assert
             Assert.NotNull(sut);
-            Assert.Equal("6.1-preview.7", sut.ApiVersion);
+            Assert.Equal("6.1-preview.1", sut.ApiVersion);
             Assert.Equal(HttpMethod.Get, sut.Method);
-            Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/definitions/1/yaml?api-version=6.1-preview.7", sut.RequestUri.AbsoluteUri);
+            Assert.Equal("https://dev.azure.com/my-org/my-project/_apis/build/definitions/1/yaml?api-version=6.1-preview.1", sut.RequestUri.AbsoluteUri);
         }
     }
 }

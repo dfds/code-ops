@@ -7,7 +7,7 @@ namespace CloudEngineering.CodeOps.Infrastructure.Azure.DevOps.Http.Request.Buil
     {
         public GetBuildDefinitionYamlRequest(string organization, string project, int definitionId)
         {
-            ApiVersion = "6.1-preview.7";
+            ApiVersion = "6.1-preview.1";
             Method = HttpMethod.Get;
             RequestUri = new Uri($"https://dev.azure.com/{organization}/{project}/_apis/build/definitions/{definitionId}/yaml?api-version={ApiVersion}");
         }
