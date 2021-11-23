@@ -64,8 +64,8 @@ steps:
   inputs:
     targetType: inline
     script: 
-        "curl -X POST \
+        curl -X POST \
         -u :$(System.AccessToken) https://dev.azure.com/{OrganizationName}/{ProjectName}/_apis/build/builds/$(build.buildid)/tags?api-version=6.0 \
         -H 'Accept: application/json' \
         -H 'Content-Type: application/json' \
-        -d ' [\"3982dbbb-9064-4f26-88f7-df7eeeafbd33\"]'"
+        -d ' ["3982dbbb-9064-4f26-88f7-df7eeeafbd33"]'
